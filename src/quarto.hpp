@@ -9,7 +9,7 @@ private:
 	bool status;
 
 public:
-	Quarto(int numero, int diaria);
+	Quarto(int numero, float diaria);
 
 	int getNumero() const;
 	int getQuantidadeDeHospedes() const;
