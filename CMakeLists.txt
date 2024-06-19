@@ -4,7 +4,7 @@ project(DescansoGarantido)
 
 add_library(
 	DescansoGarantido_LIB
-	src/.
+	src/quarto.cpp
 )
 
 add_executable(DescansoGarantido src/main.cpp)
@@ -13,6 +13,6 @@ target_link_libraries(DescansoGarantido DescansoGarantido_LIB)
 find_package(Catch2 3 REQUIRED)
 add_executable(
 	tests
-	tests/
+	tests/quarto.cpp
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain DescansoGarantido_LIB)
