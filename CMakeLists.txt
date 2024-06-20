@@ -4,6 +4,5 @@ project(DescansoGarantido)
 add_executable(
 	DescansoGarantido
 	src/main.cpp
+	src/cliente.cpp
 )
-
-file(CREATE_LINK ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_CURRENT_BINARY_DIR}/data SYMBOLIC)
