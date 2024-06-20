@@ -17,7 +17,11 @@ int   Quarto::getQuantidadeDeHospedes() const { return this -> quantidadeDeHospe
 float Quarto::getDiaria() 				const { return this -> diaria; }
 bool  Quarto::getStatus() 				const { return this -> status; }
 
-void Quarto::setDiaria(float diaria) 			   { this -> diaria = diaria; }
+void Quarto::setDiaria(float diaria) {
+	if(diaria <= 0) throw std::runtime_error("O preço da Diária precisa ser positivo");
+	this -> diaria = diaria;
+}
+
 void Quarto::setQuantidadeDeHospedes(int hospedes) { this -> quantidadeDeHospedes = hospedes; }
 void Quarto::setStatus(bool status)  			   { this -> status = status; }
 
