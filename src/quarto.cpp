@@ -60,6 +60,8 @@ const Quarto* Quartos::getQuarto(int numero) const {
 }
 
 void Quartos::setStatus(int numero, bool status) {
+	if(numero < 0) throw std::runtime_error("O número do quarto não pode ser negativo");
+
 	for(int i = this -> quartos.size() - 1; i >= 0; i--) {
 		Quarto *quarto = this -> quartos[i];
 		if(quarto -> getNumero() == numero) {

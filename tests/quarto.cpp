@@ -51,8 +51,12 @@ TEST_CASE("Testa básico da Classe Quartos") {
 
 		CHECK_THROWS(quartos.getStatus(20));
 		CHECK_THROWS(quartos.getStatus(15));
+		CHECK_THROWS(quartos.getStatus(-10));
+		CHECK_THROWS(quartos.getStatus(-90));
 		CHECK_THROWS(quartos.setStatus(20, false));
 		CHECK_THROWS(quartos.setStatus(15, true));
+		CHECK_THROWS(quartos.setStatus(-10, false));
+		CHECK_THROWS(quartos.setStatus(-90, true));
 
 		const Quarto *quarto05, *quarto20;
 		CHECK_NOTHROW(quarto05 = quartos.criarQuarto( 5, 19.9f));
