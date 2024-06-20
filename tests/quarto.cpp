@@ -2,7 +2,7 @@
 
 #include "../src/quarto.hpp"
 
-TEST_CASE("Teste básico da Classe Quarto") {
+TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
 	{
 		Quarto quarto(10, 24.99f);
 
@@ -20,15 +20,15 @@ TEST_CASE("Teste básico da Classe Quarto") {
 		CHECK( quarto.getQuantidadeDeHospedes() == 0 );
 		CHECK( quarto.getStatus() == false );
 	}
-}
 
-TEST_CASE("Exceptions da Classe Quarto") {
-	CHECK_NOTHROW( Quarto(-0, 1.0f) );
-	CHECK_NOTHROW( Quarto(0 ,  .1f) );
+	{
+		CHECK_NOTHROW( Quarto(-0, 1.0f) );
+		CHECK_NOTHROW( Quarto(0 ,  .1f) );
 
-	CHECK_THROWS( Quarto(  -1,  10.0f) );
-	CHECK_THROWS( Quarto( 100,   0.0f) );
-	CHECK_THROWS( Quarto( -20, -24.0f) );
+		CHECK_THROWS( Quarto(  -1,  10.0f) );
+		CHECK_THROWS( Quarto( 100,   0.0f) );
+		CHECK_THROWS( Quarto( -20, -24.0f) );
+	}
 }
 
 TEST_CASE("Testa básico da Classe Quartos") {
