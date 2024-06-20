@@ -22,7 +22,10 @@ void Quarto::setDiaria(float diaria) {
 	this -> diaria = diaria;
 }
 
-void Quarto::setQuantidadeDeHospedes(int hospedes) { this -> quantidadeDeHospedes = hospedes; }
+void Quarto::setQuantidadeDeHospedes(int hospedes) {
+	if(quantidadeDeHospedes < 0) throw std::runtime_error("Não é possível ter quantidade de hospédes negativo.");
+	this -> quantidadeDeHospedes = hospedes;
+}
 void Quarto::setStatus(bool status)  			   { this -> status = status; }
 
 //Class Quartos
@@ -70,4 +73,6 @@ void Quartos::setStatus(int numero, bool status) {
 
 const bool Quartos::getStatus(int numero) const {
 	return this -> getQuarto(numero) -> getStatus();
+
+	throw std::runtime_error("Número do quarto inválido");
 }
