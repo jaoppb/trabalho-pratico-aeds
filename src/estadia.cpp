@@ -8,8 +8,8 @@ Estadia::Estadia(
 	unsigned int codigo,
 	std::string dataEntrada,
 	std::string dataSaida,
-	int codigoCliente,
-	int numeroDoQuarto
+	unsigned int codigoCliente,
+	unsigned int numeroDoQuarto
 ): codigo(codigo), codigoCliente(codigoCliente), numeroDoQuarto(numeroDoQuarto) {
 	this -> dataEntrada = parseDate(dataEntrada + " - 14:00:00");
 	this -> dataSaida   = parseDate(dataSaida   + " - 12:00:00");

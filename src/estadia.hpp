@@ -10,11 +10,11 @@ private:
 	unsigned int codigo;
 	time_t dataEntrada;
 	time_t dataSaida;
-	int diarias;
-	int codigoCliente;
-	int numeroDoQuarto;
+	unsigned int diarias;
+	unsigned int codigoCliente;
+	unsigned int numeroDoQuarto;
 public:
-	Estadia(unsigned int codigo, std::string dataEntrada, std::string dataSaida, int codigoCliente, int numeroDoQuarto);
+	Estadia(unsigned int codigo, std::string dataEntrada, std::string dataSaida, unsigned int codigoCliente, unsigned int numeroDoQuarto);
 
 	const int getDiarias() const;
 };
