@@ -13,10 +13,10 @@ private:
 public:
 	Quarto(int numero, float diaria);
 
-	int   getNumero() const;
-	int   getQuantidadeDeHospedes() const;
-	float getDiaria() const;
-	bool  getStatus() const;
+	const int   getNumero() const;
+	const int   getQuantidadeDeHospedes() const;
+	const float getDiaria() const;
+	const bool  getStatus() const;
 
 	void setQuantidadeDeHospedes(int hospedes);
 	void setDiaria(float diaria);

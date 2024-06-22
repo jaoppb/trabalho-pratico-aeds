@@ -12,10 +12,10 @@ Quarto::Quarto(int numero, float valorDiaria):
 	this -> diaria = valorDiaria;
 }
 
-int   Quarto::getNumero() 				const { return this -> numero; }
-int   Quarto::getQuantidadeDeHospedes() const { return this -> quantidadeDeHospedes; }
-float Quarto::getDiaria() 				const { return this -> diaria; }
-bool  Quarto::getStatus() 				const { return this -> status; }
+const int   Quarto::getNumero() 				const { return this -> numero; }
+const int   Quarto::getQuantidadeDeHospedes() const { return this -> quantidadeDeHospedes; }
+const float Quarto::getDiaria() 				const { return this -> diaria; }
+const bool  Quarto::getStatus() 				const { return this -> status; }
 
 void Quarto::setDiaria(float diaria) {
 	if(diaria <= 0) throw std::runtime_error("O preço da Diária precisa ser positivo");
