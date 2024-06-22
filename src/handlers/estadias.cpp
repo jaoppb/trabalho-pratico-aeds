@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include "estadias.hpp"
 
 Estadias::Estadias(): estadias({}) {
@@ -30,7 +32,7 @@ const Estadia* Estadias::agendarEstadia(
 	Estadia *estadia = new Estadia(this -> nextCode, dataEntrada, dataSaida, codigoCliente, numeroDoQuarto);
 	if(!this -> _checkEstadia(estadia)) {
 		delete estadia;
-		return nullptr;
+		throw std::runtime_error("Alguma estádia já agendada conflita com a nova estádia.");
 	}
 	
 	this -> estadias.push_back(estadia);
