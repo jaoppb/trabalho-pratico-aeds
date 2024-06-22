@@ -1,7 +1,12 @@
 #include <iostream>
 
-int main() {
-	std::cout << "Test";
+#include "global.hpp"
 
+int main() {
+	initiliazeGlobals();
+
+	
+
+	terminateGlobals();
 	return 0;
 }
