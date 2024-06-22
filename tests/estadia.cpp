@@ -67,6 +67,8 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
         CHECK(estadia -> getDiarias() == 4);
         CHECK(estadiasHandler -> agendarEstadia("24/06/2024", "25/06/2024", clientCode, roomNum) == nullptr);
         CHECK(estadiasHandler -> agendarEstadia("19/06/2024", "22/06/2024", clientCode, roomNum) == nullptr);
+        CHECK(estadiasHandler -> agendarEstadia("19/06/2024", "27/06/2024", clientCode, roomNum) == nullptr);
+        CHECK(estadiasHandler -> agendarEstadia("19/02/2024", "27/12/2024", clientCode, roomNum) == nullptr);
         CHECK(estadiasHandler -> agendarEstadia("19/06/2024", "21/06/2024", clientCode, roomNum) != nullptr);
         CHECK(estadiasHandler -> agendarEstadia("25/06/2024", "27/06/2024", clientCode, roomNum) != nullptr);
     }
