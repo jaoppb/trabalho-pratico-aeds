@@ -1,3 +1,5 @@
+#include <stdexcept>
+
 #include "pessoas.hpp"
 
 Pessoas::Pessoas(): pessoas({}) {};
@@ -30,13 +32,19 @@ const Funcionario *Pessoas::cadastrarFuncionaro(unsigned int telefone, std::stri
 }
 
 const Pessoa *Pessoas::getPessoa(unsigned int codigo) const {
-	return this -> _getPessoa(codigo);
+	Pessoa *pessoa = this -> _getPessoa(codigo);
+	if(pessoa == nullptr) throw std::runtime_error("Pessoa não encontrada.");
+	return pessoa;
 }
 
 const Cliente *Pessoas::getCliente(unsigned int codigo) const {
-	return dynamic_cast<Cliente*>(this -> _getPessoa(codigo));
+	Cliente *cliente = dynamic_cast<Cliente*>(this -> _getPessoa(codigo));
+	if(cliente == nullptr) throw std::runtime_error("Cliente não encontrado.");
+	return cliente;
 }
 
 const Funcionario *Pessoas::getFuncionario(unsigned int codigo) const {
-	return dynamic_cast<Funcionario*>(this -> _getPessoa(codigo));
+	Funcionario *funcionario = dynamic_cast<Funcionario*>(this -> _getPessoa(codigo));
+	if(funcionario == nullptr) throw std::runtime_error("Funcionario não encontrado.");
+	return funcionario;
 }
