@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "../src/estadia.hpp"
-#include "../src/global.hpp"
+#include "../estadia.hpp"
+#include "../global.hpp"
 
 TEST_CASE("Testes básicos para a Classe Estadia") {
     //cadastrar quarto

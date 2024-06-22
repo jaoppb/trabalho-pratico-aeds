@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "../src/quarto.hpp"
-#include "../src/global.hpp"
+#include "../quarto.hpp"
+#include "../global.hpp"
 
 TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
 	{
