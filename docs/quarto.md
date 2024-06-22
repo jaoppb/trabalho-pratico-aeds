@@ -2,14 +2,14 @@
 
 ## Atributos
 
-int   **numero**
-int   **quantidadeDeHospedes**
-float **diaria**
+int   **numero** <br>
+int   **quantidadeDeHospedes** <br>
+float **diaria** <br>
 bool  **status**
 
-> numero >= 0
-> quantidadeDeHospede > 0
-> diaria > 0
+> numero >= 0 <br>
+> quantidadeDeHospede > 0 <br>
+> diaria > 0 <br>
 > status: ``true`` para ocupado e ``false`` para descupado.
 
 

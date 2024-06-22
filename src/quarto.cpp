@@ -26,7 +26,7 @@ void Quarto::setQuantidadeDeHospedes(int hospedes) {
 	if(quantidadeDeHospedes < 0) throw std::runtime_error("Não é possível ter quantidade de hospédes negativo.");
 	this -> quantidadeDeHospedes = hospedes;
 }
-void Quarto::setStatus(bool status)  			   { this -> status = status; }
+void Quarto::setStatus(bool status) { this -> status = status; }
 
 //Class Quartos
 
