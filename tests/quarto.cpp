@@ -1,6 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "../src/quarto.hpp"
+#include "../src/global.hpp"
 
 TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
 	{
@@ -33,40 +34,39 @@ TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
 
 TEST_CASE("Testa básico da Classe Quartos") {
 	{
-		Quartos quartos;
-		const Quarto *quarto10 = quartos.criarQuarto(10, 24.0f);
+		const Quarto *quarto10 = quartosHandler -> criarQuarto(10, 24.0f);
 		
 		CHECK(quarto10 -> getNumero() == 10);
 		CHECK(quarto10 -> getDiaria() == 24.0f);
 		
-		CHECK_THROWS(quartos.criarQuarto(10, 24.51f));
-		CHECK_THROWS(quartos.criarQuarto(20, 0.0f));
-		CHECK_THROWS(quartos.criarQuarto(15, -10.0f));
-		CHECK_THROWS(quartos.criarQuarto(-4, 18.0f));
-		CHECK_THROWS(quartos.criarQuarto(-8, -1.0f));
+		CHECK_THROWS(quartosHandler -> criarQuarto(10, 24.51f));
+		CHECK_THROWS(quartosHandler -> criarQuarto(20, 0.0f));
+		CHECK_THROWS(quartosHandler -> criarQuarto(15, -10.0f));
+		CHECK_THROWS(quartosHandler -> criarQuarto(-4, 18.0f));
+		CHECK_THROWS(quartosHandler -> criarQuarto(-8, -1.0f));
 
-		CHECK(quartos.getStatus(10) == false);
-		quartos.setStatus(10, true);
-		CHECK(quartos.getStatus(10) == true);
+		CHECK(quartosHandler -> getStatus(10) == false);
+		quartosHandler -> setStatus(10, true);
+		CHECK(quartosHandler -> getStatus(10) == true);
 
-		CHECK_THROWS(quartos.getStatus(20));
-		CHECK_THROWS(quartos.getStatus(15));
-		CHECK_THROWS(quartos.getStatus(-10));
-		CHECK_THROWS(quartos.getStatus(-90));
-		CHECK_THROWS(quartos.setStatus(20, false));
-		CHECK_THROWS(quartos.setStatus(15, true));
-		CHECK_THROWS(quartos.setStatus(-10, false));
-		CHECK_THROWS(quartos.setStatus(-90, true));
+		CHECK_THROWS(quartosHandler -> getStatus(20));
+		CHECK_THROWS(quartosHandler -> getStatus(15));
+		CHECK_THROWS(quartosHandler -> getStatus(-10));
+		CHECK_THROWS(quartosHandler -> getStatus(-90));
+		CHECK_THROWS(quartosHandler -> setStatus(20, false));
+		CHECK_THROWS(quartosHandler -> setStatus(15, true));
+		CHECK_THROWS(quartosHandler -> setStatus(-10, false));
+		CHECK_THROWS(quartosHandler -> setStatus(-90, true));
 
 		const Quarto *quarto05, *quarto20;
-		CHECK_NOTHROW(quarto05 = quartos.criarQuarto( 5, 19.9f));
-		CHECK_NOTHROW(quarto20 = quartos.criarQuarto(20, 14.9f));
+		CHECK_NOTHROW(quarto05 = quartosHandler -> criarQuarto( 5, 19.9f));
+		CHECK_NOTHROW(quarto20 = quartosHandler -> criarQuarto(20, 14.9f));
 
-		CHECK(quartos.getQuarto( 5) == quarto05);
-		CHECK(quartos.getQuarto(10) == quarto10);
-		CHECK(quartos.getQuarto(20) == quarto20);
+		CHECK(quartosHandler -> getQuarto( 5) == quarto05);
+		CHECK(quartosHandler -> getQuarto(10) == quarto10);
+		CHECK(quartosHandler -> getQuarto(20) == quarto20);
 
-		CHECK_THROWS(quartos.getQuarto( 15));
-		CHECK_THROWS(quartos.getQuarto(-24));
+		CHECK_THROWS(quartosHandler -> getQuarto( 15));
+		CHECK_THROWS(quartosHandler -> getQuarto(-24));
 	}
 }

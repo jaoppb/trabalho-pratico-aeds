@@ -31,17 +31,4 @@ public:
 	const time_t  getCheckOutDate() const;
 };
 
-class Estadias {
-private:
-	std::vector<Estadia*> estadias;
-	unsigned int nextCode;
-
-	const bool checkEstadia(Estadia *novaEstadia);
-public:
-	Estadias();
-	~Estadias();
-
-	const Estadia* agendarEstadia(std::string dataEntrada, std::string dataSaida, int codigoCliente, int numeroDoQuarto);
-};
-
 #endif

@@ -23,16 +23,4 @@ public:
 	void setStatus(bool status);
 };
 
-class Quartos {
-private:
-	std::vector<Quarto*> quartos;
-public:
-	Quartos();
-	~Quartos();
-	const Quarto* criarQuarto(int numero, float valorDiaria);
-	const Quarto* getQuarto  (int numero) const;
-	void          setStatus  (int numero, bool status);
-	const bool	  getStatus  (int numero) const;
-};
-
 #endif

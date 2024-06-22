@@ -1,16 +1,10 @@
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
 
-#include "quarto.hpp"
-#include "estadia.hpp"
-#include "cliente.hpp"
+#include "handlers.hpp"
 
 extern Quartos  *quartosHandler;
 extern Estadias *estadiasHandler;
-extern Clientes *clientesHandler;
-
-void initiliazeGlobals();
-
-void terminateGlobals();
+extern Pessoas  *pessoasHandler;
 
 #endif

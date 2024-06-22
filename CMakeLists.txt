@@ -1,11 +1,16 @@
+set (CMAKE_CXX_STANDARD 11)
+
 cmake_minimum_required(VERSION 3.22)
 project(DescansoGarantido)
 
 add_library(
 	DescansoGarantido_LIB
 	src/quarto.cpp
+	src/pessoa.cpp
 	src/cliente.cpp
+	src/funcionario.cpp
 	src/estadia.cpp
+	src/handlers.cpp
 	src/global.cpp
 	src/utils.cpp
 )
@@ -21,9 +26,3 @@ add_executable(
 	tests/utils.cpp
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain DescansoGarantido_LIB)
-
-IF(WIN32)
-	find_path(CATCH_INCLUDE_DIR NAMES catch.hpp PATH_SUFFIXES catch2)
-	target_include_directories(tests PRIVATE ${CATCH_INCLUDE_DIR})
-	include(C:\Users\Yuri\OneDrive\Documentos\Trabalho AED e FES\vcpkg-2024.06.15\scripts\buildsystems\vcpkg.cmake)
-ENDIF()

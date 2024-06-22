@@ -21,49 +21,11 @@ Estadia::Estadia(
 
 	this -> diarias = ceil(difftime(this -> dataSaida, this -> dataEntrada) / (24.0f * 60.0f * 60.0f));
 
-	this -> cliente = clientesHandler -> getCliente(codigoCliente);
-	this -> quarto  =  quartosHandler -> getQuarto(numeroDoQuarto);
+	this -> cliente = pessoasHandler -> getCliente(codigoCliente);
+	this -> quarto  = quartosHandler -> getQuarto(numeroDoQuarto);
 }
 
 const int	  Estadia::getDiarias() 	 const { return this -> diarias; }
 const Quarto* Estadia::getQuarto()  	 const { return this -> quarto; }
 const time_t  Estadia::getCheckInDate()  const { return this -> dataEntrada; }
 const time_t  Estadia::getCheckOutDate() const { return this -> dataSaida; }
-
-//Class Estadias
-
-Estadias::Estadias(): estadias({}) {
-	this -> nextCode = 0;
-}
-
-Estadias::~Estadias() {
-	for(Estadia *estadia: this -> estadias) {
-		delete estadia;
-	}
-}
-
-const bool Estadias::checkEstadia(Estadia *novaEstadia) {
-	for(const Estadia *estadia: this -> estadias) {
-		if(estadia -> getQuarto() -> getNumero() != novaEstadia -> getQuarto() -> getNumero()) continue;
-
-		if(!((estadia -> getCheckOutDate() < novaEstadia -> getCheckInDate()) ||
-			  novaEstadia -> getCheckOutDate() < estadia -> getCheckInDate())) return false;
-	}
-
-	return true;
-}
-
-const Estadia* Estadias::agendarEstadia(
-	std::string dataEntrada,
-	std::string dataSaida,
-	int codigoCliente,
-	int numeroDoQuarto) {
-	Estadia *estadia = new Estadia(this -> nextCode, dataEntrada, dataSaida, codigoCliente, numeroDoQuarto);
-	if(!this -> checkEstadia(estadia)) {
-		delete estadia;
-		return nullptr;
-	}
-	
-	this -> nextCode++;
-	return estadia;
-}
