@@ -6,6 +6,7 @@ add_library(
 	src/quarto.cpp
 	src/cliente.cpp
 	src/estadia.cpp
+	src/global.cpp
 	src/utils.cpp
 )
 
