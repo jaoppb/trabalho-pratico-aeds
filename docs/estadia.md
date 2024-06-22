@@ -40,6 +40,11 @@ Construtor da classe que inicializa o vetor de estadias como vazio e o `nextCode
 
 Destrutor da classe que libera a memória alocada para as estadias.
 
+### bool _checkEstadia(Estadia* novaEstadia)
+
+Checa se uma nova estadia pode ser adicionada verificando se um quarto vai estar ocupado na data indicada de `novaEstadia`.
+
 ### const Estadia* agendarEstadia(std::string dataEntrada, std::string dataSaida, int codigoCliente, int numeroDoQuarto)
 
-Agrega uma nova estadia ao vetor de estadias com os valores fornecidos e retorna um ponteiro const(evitar alterações indevidas na estadia) para a nova estadia. Incrementa o `nextCode`.
+Agrega uma nova estadia ao vetor de estadias com os valores fornecidos e retorna um ponteiro const(evitar alterações indevidas na estadia) para a nova estadia.
+Caso algum problema tenha ocorrido(como datas conflitantes) o valor de `nullptr` é retornado.
