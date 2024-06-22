@@ -58,8 +58,9 @@ Estadias::~Estadias() {
 }
 
 const bool Estadias::_checkEstadia(Estadia *novaEstadia) {
+	const uint roomNumber = novaEstadia -> getQuarto() -> getNumero();
 	for(const Estadia *estadia: this -> estadias) {
-		if(estadia -> getQuarto() -> getNumero() != novaEstadia -> getQuarto() -> getNumero()) continue;
+		if(estadia -> getQuarto() -> getNumero() != roomNumber) continue;
 
 		if(!((estadia -> getCheckOutDate() < novaEstadia -> getCheckInDate()) ||
 			  novaEstadia -> getCheckOutDate() < estadia -> getCheckInDate())) return false;
@@ -79,6 +80,7 @@ const Estadia* Estadias::agendarEstadia(
 		return nullptr;
 	}
 	
+	this -> estadias.push_back(estadia);
 	this -> nextCode++;
 	return estadia;
 }
