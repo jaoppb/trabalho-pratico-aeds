@@ -4,12 +4,16 @@
 #include "../src/global.hpp"
 
 TEST_CASE("Testes básicos para a Classe Estadia") {
+    //cadastrar quarto
     const Quarto *quarto = quartosHandler -> criarQuarto(12, 1.0f);
     REQUIRE(quarto != nullptr);
     const uint roomNum = quarto -> getNumero();
+
+    //cadastrar cliente
     const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal");
     REQUIRE(cliente != nullptr);
     const uint clientCode = cliente -> getCodigo();
+
 	{
 		CHECK(Estadia(10, "24/07/2024", "25/07/2024", clientCode, roomNum).getDiarias() ==  1);
 		CHECK(Estadia(10, "25/07/2024", "29/07/2024", clientCode, roomNum).getDiarias() ==  4);
@@ -23,6 +27,28 @@ TEST_CASE("Testes básicos para a Classe Estadia") {
 		CHECK_THROWS(Estadia(10, "02/01/2024", "01/01/2024", clientCode, roomNum));
 		CHECK_THROWS(Estadia(10, "10/03/2024", "10/02/2024", clientCode, roomNum));
 	}
+    {
+        REQUIRE_THROWS(pessoasHandler -> getCliente(12));
+		CHECK_THROWS(Estadia(10, "24/07/2024", "25/07/2024", 12, roomNum));
+		CHECK_THROWS(Estadia(10, "25/07/2024", "29/07/2024", 12, roomNum));
+		CHECK_THROWS(Estadia(10, "30/07/2024", "04/08/2024", 12, roomNum));
+		CHECK_THROWS(Estadia(10, "12/03/2024", "21/04/2024", 12, roomNum));
+    }
+    {
+        REQUIRE_THROWS(quartosHandler -> getQuarto(100));
+		CHECK_THROWS(Estadia(10, "24/07/2024", "25/07/2024", clientCode, 100));
+		CHECK_THROWS(Estadia(10, "25/07/2024", "29/07/2024", clientCode, 100));
+		CHECK_THROWS(Estadia(10, "30/07/2024", "04/08/2024", clientCode, 100));
+		CHECK_THROWS(Estadia(10, "12/03/2024", "21/04/2024", clientCode, 100));
+    }
+    {
+        REQUIRE_THROWS(pessoasHandler -> getCliente(12));
+        REQUIRE_THROWS(quartosHandler -> getQuarto(100));
+		CHECK_THROWS(Estadia(10, "24/07/2024", "25/07/2024", 12, 100));
+		CHECK_THROWS(Estadia(10, "25/07/2024", "29/07/2024", 12, 100));
+		CHECK_THROWS(Estadia(10, "30/07/2024", "04/08/2024", 12, 100));
+		CHECK_THROWS(Estadia(10, "12/03/2024", "21/04/2024", 12, 100));
+    }
 }
 
 TEST_CASE("Testes básicos para a Classe Estadias") {
