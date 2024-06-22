@@ -57,7 +57,7 @@ Estadias::~Estadias() {
 	}
 }
 
-const bool Estadias::checkEstadia(Estadia *novaEstadia) {
+const bool Estadias::_checkEstadia(Estadia *novaEstadia) {
 	for(const Estadia *estadia: this -> estadias) {
 		if(estadia -> getQuarto() -> getNumero() != novaEstadia -> getQuarto() -> getNumero()) continue;
 
@@ -74,7 +74,7 @@ const Estadia* Estadias::agendarEstadia(
 	int codigoCliente,
 	int numeroDoQuarto) {
 	Estadia *estadia = new Estadia(this -> nextCode, dataEntrada, dataSaida, codigoCliente, numeroDoQuarto);
-	if(!this -> checkEstadia(estadia)) {
+	if(!this -> _checkEstadia(estadia)) {
 		delete estadia;
 		return nullptr;
 	}

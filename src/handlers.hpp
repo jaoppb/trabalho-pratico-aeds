@@ -32,7 +32,7 @@ private:
 	std::vector<Estadia*> estadias;
 	unsigned int nextCode;
 
-	const bool checkEstadia(Estadia *novaEstadia);
+	const bool _checkEstadia(Estadia *novaEstadia);
 public:
 	Estadias();
 	~Estadias();
