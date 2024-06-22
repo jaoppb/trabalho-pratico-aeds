@@ -20,4 +20,5 @@ target_link_libraries(tests PRIVATE Catch2::Catch2WithMain DescansoGarantido_LIB
 IF(WIN32)
 	find_path(CATCH_INCLUDE_DIR NAMES catch.hpp PATH_SUFFIXES catch2)
 	target_include_directories(tests PRIVATE ${CATCH_INCLUDE_DIR})
+	include(C:\Users\Yuri\OneDrive\Documentos\Trabalho AED e FES\vcpkg-2024.06.15\scripts\buildsystems\vcpkg.cmake)
 ENDIF()
