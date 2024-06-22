@@ -1,7 +1,7 @@
 #ifndef GLOBAL_HPP
 #define GLOBAL_HPP
 
-#include "handlers.hpp"
+#include "handlers/all.hpp"
 
 extern Quartos  *quartosHandler;
 extern Estadias *estadiasHandler;

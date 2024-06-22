@@ -10,7 +10,9 @@ add_library(
 	src/cliente.cpp
 	src/funcionario.cpp
 	src/estadia.cpp
-	src/handlers.cpp
+	src/handlers/estadias.cpp
+	src/handlers/pessoas.cpp
+	src/handlers/quartos.cpp
 	src/global.cpp
 	src/utils.cpp
 )
