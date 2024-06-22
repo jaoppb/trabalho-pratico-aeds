@@ -13,7 +13,7 @@ bool  **status**
 > status: ``true`` para ocupado e ``false`` para descupado.
 
 
-## Metódos
+## Métodos
 
 ### Quarto(int numero, float diaria)
 Construtor da classe que inicializa quantidadeDeHospedes com 0, status com false e os outros atributos passados por parâmetro. Caso esteja fora dos limites, um erro é lançado.

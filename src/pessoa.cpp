@@ -10,4 +10,4 @@ Pessoa::~Pessoa() {}
 
 const unsigned int        Pessoa::getCodigo()   const { return this->codigo; }
 const unsigned int        Pessoa::getTelefone() const { return this->telefone; }
-const std::string Pessoa::getNome()     const { return this->nome; }
+const std::string         Pessoa::getNome()     const { return this->nome; }

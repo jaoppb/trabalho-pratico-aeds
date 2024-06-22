@@ -2,11 +2,18 @@
 
 //class Cliente
 
-Cliente::Cliente(//construtor da class Cliente que recebe como parametro duas strings para nome e endereco
+Cliente::Cliente(
     unsigned int codigo,
     unsigned int telefone,
+    unsigned int pontos,
     std::string nome,
     std::string endereco
-    ): Pessoa(codigo, telefone, nome), endereco(endereco) {}
+    ): Pessoa(codigo, telefone, nome), endereco(endereco), pontos(0) {}
+
+int Cliente::getPontos() { return this-> pontos; }
+
+void Cliente::addPontos(int diarias) { this->pontos += diarias*10; }
 
 std::string Cliente::getEndereco() const { return this->endereco; }
+
+void Cliente::setEndereco(std::string endereco)    { this->endereco = endereco; }

@@ -22,7 +22,7 @@ public:
     const std::string getCargo()   const;
     const float       getSalario() const;
 
-    void setSalario(float salario)  { this->salario = salario; }
+    void setSalario(float salario);
 };
 
 #endif

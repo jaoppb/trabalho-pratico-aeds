@@ -9,18 +9,24 @@
 class Cliente: public Pessoa {
 private:
     std::string endereco;
+    int pontos;
 
 public:
     Cliente(
         unsigned int codigo,
         unsigned int telefone,
+        unsigned int pontos,
         std::string nome,
         std::string endereco
     );
 
+    int getPontos();
+
+    void addPontos(int diarias);
+
     std::string getEndereco() const;
 
-    void setEndereco(std::string endereco) { this->endereco = endereco; };
+    void setEndereco(std::string endereco);
 };
 
 #endif

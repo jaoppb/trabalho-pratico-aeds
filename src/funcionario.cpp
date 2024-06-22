@@ -3,7 +3,7 @@
 #include "funcionario.hpp"
 
 //class Funcionario
-Funcionario::Funcionario( //construtor da class Funcionario que recebe como parametro duas strings para nome e cargo e um real do tipo float para salario
+Funcionario::Funcionario( 
     unsigned int codigo,
     unsigned int telefone,
     std::string nome,
@@ -16,3 +16,4 @@ Funcionario::Funcionario( //construtor da class Funcionario que recebe como para
 
 const std::string Funcionario::getCargo()  const { return this->cargo; }
 const float Funcionario::getSalario() const { return this->salario; }
+void Funcionario::setSalario(float salario) { this->salario = salario; }
