@@ -10,7 +10,7 @@ TEST_CASE("Testes básicos para a Classe Estadia") {
     const uint roomNum = quarto -> getNumero();
 
     //cadastrar cliente
-    const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal");
+    const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
     REQUIRE(cliente != nullptr);
     const uint clientCode = cliente -> getCodigo();
 
@@ -58,7 +58,7 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
     const uint roomNum = quarto -> getNumero();
 
     //registra um cliente
-    const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal");
+    const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
     REQUIRE(cliente != nullptr);
     const uint clientCode = cliente -> getCodigo();
 

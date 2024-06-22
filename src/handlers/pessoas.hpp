@@ -17,7 +17,7 @@ public:
     Pessoas();
     ~Pessoas();
 
-    const Cliente     *cadastrarCliente   (unsigned int telefone, std::string nome, std::string endereco);
+    const Cliente     *cadastrarCliente   (unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos);
     const Funcionario *cadastrarFuncionaro(unsigned int telefone, std::string nome, std::string cargo, float salario);
 
     const Pessoa      *getPessoa	 (unsigned int code) const;

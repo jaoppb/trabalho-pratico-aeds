@@ -17,8 +17,8 @@ Pessoa *Pessoas::_getPessoa(unsigned int codigo) const {
 	return nullptr;
 }
 
-const Cliente *Pessoas::cadastrarCliente(unsigned int telefone, std::string nome, std::string endereco) {
-	Cliente *cliente = new Cliente(this -> nextCode, telefone, nome, endereco);
+const Cliente *Pessoas::cadastrarCliente(unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos) {
+	Cliente *cliente = new Cliente(this -> nextCode, telefone, pontos, nome, endereco);
 	this -> pessoas.push_back(cliente);
 	this -> nextCode++;
 	return cliente;
