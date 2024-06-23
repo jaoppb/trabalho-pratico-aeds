@@ -33,9 +33,8 @@ TEST_CASE("Teste básico da Classe Cliente", "[Cliente]") {
         cliente_invalido.addPontos(2);
         CHECK(cliente_invalido.getPontos() == 20);
 
-        cliente_invalido.addPontos(-5);
-
-        cliente_invalido.setEndereco(""); 
+        CHECK_THROWS(cliente_invalido.addPontos(-5));
+        CHECK_THROWS(cliente_invalido.setEndereco("")); 
         
         Cliente cliente_valido(4, 987654322, 10, "Ana Clara", "Rua E, 654");
         CHECK(cliente_valido.getCodigo() == 4);

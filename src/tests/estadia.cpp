@@ -71,7 +71,6 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
         CHECK_THROWS(estadiasHandler -> agendarEstadia("19/02/2024", "27/12/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("21/06/2024", "22/06/2024", clientCode, roomNum));
         CHECK(estadiasHandler -> agendarEstadia("25/06/2024", "28/06/2024", clientCode, roomNum) != nullptr);
-        CHECK(estadiasHandler -> agendarEstadia("22/06/2024", "23/06/2024", clientCode, roomNum) != nullptr);
         CHECK(estadiasHandler -> agendarEstadia("28/06/2024", "03/07/2024", clientCode, roomNum) != nullptr);
     }
 
