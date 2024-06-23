@@ -52,6 +52,8 @@ Retorna a `dataSaida` como readonly.
 
 ## Métodos
 
+Métodos com "_" no inicio do nome demonstram que são privados.
+
 ### Estadias()
 
 Construtor da classe que inicializa o vetor de estadias como vazio e o `nextCode` como 0.
@@ -64,7 +66,28 @@ Destrutor da classe que libera a memória alocada para as estadias.
 
 Checa se uma nova estadia pode ser adicionada verificando se um quarto vai estar ocupado na data indicada de `novaEstadia`.
 
+### float _darBaixa(Estadia *estadia)
+
+Verifica se a data atual está entre o dia de check-in e o dia de check-out da `estadia` passada e caso esteja altera o status do quarto da estadia para desocupado.
+
+Contabiliza os pontos de fidelidade do cliente passanda as diarias.
+
+E retorna o valor a ser cobrado pela estadia.
+
+### Estadia *_getEstadia(unsigned int code);
+
+Busca no atributo `estadias` por uma estadia com o código igual ao `code` passado.
+
+Caso encontre retorna o ponteiro da estadia.
+
+Caso não encontre retorn `nullptr`.
+
 ### const Estadia* agendarEstadia(std::string dataEntrada, std::string dataSaida, int codigoCliente, int numeroDoQuarto)
 
-Agrega uma nova estadia ao vetor de estadias com os valores fornecidos e retorna um ponteiro const(evitar alterações indevidas na estadia) para a nova estadia.
-Caso algum problema tenha ocorrido(como datas conflitantes) o valor de `nullptr` é retornado.
+Registra uma nova estadia ao vetor de estadias com os valores fornecidos e retorna um ponteiro const(evitar alterações indevidas na estadia) para a nova estadia. Também altera o status do quarto para ocupado.
+
+Caso algum problema tenha ocorrido(como a `dataDeEntrada` anterior ao dia atual ou datas conflitantes) um erro correspondente é lançado.
+
+### float darBaixa(unsigned int code)
+
+Combina `_getEstadia` com `_darBaixa` para dar baixa na estadia com o código passado.

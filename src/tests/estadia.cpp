@@ -53,7 +53,7 @@ TEST_CASE("Testes básicos para a Classe Estadia") {
 
 TEST_CASE("Testes básicos para a Classe Estadias") {
     //registra um quarto
-    const Quarto *quarto = quartosHandler -> criarQuarto(123, 1.0f);
+    const Quarto *quarto = quartosHandler -> criarQuarto(123, 12.0f);
     REQUIRE(quarto != nullptr);
     const uint roomNum = quarto -> getNumero();
 
@@ -63,14 +63,16 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
     const uint clientCode = cliente -> getCodigo();
 
     {
-        const Estadia* estadia = estadiasHandler -> agendarEstadia("21/06/2024", "25/06/2024", clientCode, roomNum);
-        CHECK(estadia -> getDiarias() == 4);
+        const Estadia* estadia = estadiasHandler -> agendarEstadia("23/06/2024", "25/06/2024", clientCode, roomNum);
+        CHECK(estadia -> getDiarias() == 2);
         CHECK_THROWS(estadiasHandler -> agendarEstadia("24/06/2024", "25/06/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("19/06/2024", "22/06/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("19/06/2024", "27/06/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("19/02/2024", "27/12/2024", clientCode, roomNum));
-        CHECK(estadiasHandler -> agendarEstadia("19/06/2024", "21/06/2024", clientCode, roomNum) != nullptr);
-        CHECK(estadiasHandler -> agendarEstadia("25/06/2024", "27/06/2024", clientCode, roomNum) != nullptr);
+        CHECK_THROWS(estadiasHandler -> agendarEstadia("21/06/2024", "22/06/2024", clientCode, roomNum));
+        CHECK(estadiasHandler -> agendarEstadia("25/06/2024", "28/06/2024", clientCode, roomNum) != nullptr);
+        CHECK(estadiasHandler -> agendarEstadia("22/06/2024", "23/06/2024", clientCode, roomNum) != nullptr);
+        CHECK(estadiasHandler -> agendarEstadia("28/06/2024", "03/07/2024", clientCode, roomNum) != nullptr);
     }
 
     {
@@ -86,5 +88,35 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
     {
         CHECK_THROWS(estadiasHandler -> agendarEstadia("2024/06/21", "25/06/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("21/06/2024", "2024/06/25", clientCode, roomNum));
+    }
+
+    {
+        const Estadia* estadias[5] = {};
+        estadias[0] = estadiasHandler -> agendarEstadia("12/10/2024", "13/10/2024", clientCode, roomNum);
+        estadias[1] = estadiasHandler -> agendarEstadia("13/10/2024", "16/10/2024", clientCode, roomNum);
+        estadias[2] = estadiasHandler -> agendarEstadia("20/10/2024", "31/10/2024", clientCode, roomNum);
+        estadias[3] = estadiasHandler -> agendarEstadia("03/11/2024", "10/11/2024", clientCode, roomNum);
+        estadias[4] = estadiasHandler -> agendarEstadia("10/11/2024", "20/12/2024", clientCode, roomNum);
+        int points = cliente -> getPontos();
+        {
+            CHECK(estadiasHandler -> darBaixa(estadias[0] -> getCodigo()) == 12.0f);
+            CHECK(cliente -> getPontos() == (points += 10));
+        }
+        {
+            CHECK(estadiasHandler -> darBaixa(estadias[1] -> getCodigo()) == 36.0f);
+            CHECK(cliente -> getPontos() == (points += 30));
+        }
+        {
+            CHECK(estadiasHandler -> darBaixa(estadias[2] -> getCodigo()) == 132.0f);
+            CHECK(cliente -> getPontos() == (points += 110));
+        }
+        {
+            CHECK(estadiasHandler -> darBaixa(estadias[3] -> getCodigo()) == 84.0f);
+            CHECK(cliente -> getPontos() == (points += 70));
+        }
+        {
+            CHECK(estadiasHandler -> darBaixa(estadias[4] -> getCodigo()) == 480.0f);
+            CHECK(cliente -> getPontos() == (points += 400));
+        }
     }
 }
