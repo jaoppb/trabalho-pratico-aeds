@@ -17,6 +17,14 @@ Pessoa *Pessoas::_getPessoa(unsigned int codigo) const {
 	return nullptr;
 }
 
+Cliente *Pessoas::_getCliente(unsigned int codigo) const {
+	return dynamic_cast<Cliente*>(this -> _getPessoa(codigo));
+}
+
+Funcionario *Pessoas::_getFuncionario(unsigned int codigo) const {
+	return dynamic_cast<Funcionario*>(this -> _getPessoa(codigo));
+}
+
 const Cliente *Pessoas::cadastrarCliente(unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos) {
 	Cliente *cliente = new Cliente(this -> nextCode, telefone, pontos, nome, endereco);
 	this -> pessoas.push_back(cliente);
@@ -38,13 +46,17 @@ const Pessoa *Pessoas::getPessoa(unsigned int codigo) const {
 }
 
 const Cliente *Pessoas::getCliente(unsigned int codigo) const {
-	Cliente *cliente = dynamic_cast<Cliente*>(this -> _getPessoa(codigo));
+	Cliente *cliente = this -> _getCliente(codigo);
 	if(cliente == nullptr) throw std::runtime_error("Cliente não encontrado.");
 	return cliente;
 }
 
 const Funcionario *Pessoas::getFuncionario(unsigned int codigo) const {
-	Funcionario *funcionario = dynamic_cast<Funcionario*>(this -> _getPessoa(codigo));
+	Funcionario *funcionario = this -> _getFuncionario(codigo);
 	if(funcionario == nullptr) throw std::runtime_error("Funcionario não encontrado.");
 	return funcionario;
+}
+
+void Pessoas::addPontos(const Cliente *cliente, int diarias) const {
+	this -> _getCliente(cliente -> getCodigo()) -> addPontos(diarias);
 }

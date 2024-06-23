@@ -12,7 +12,9 @@ private:
     std::vector<Pessoa*> pessoas;
     unsigned int nextCode;
 
-	Pessoa *_getPessoa(unsigned int code) const;
+	Pessoa      *_getPessoa     (unsigned int code) const;
+    Cliente     *_getCliente    (unsigned int code) const;
+    Funcionario *_getFuncionario(unsigned int code) const;
 public:
     Pessoas();
     ~Pessoas();
@@ -23,6 +25,8 @@ public:
     const Pessoa      *getPessoa	 (unsigned int code) const;
     const Cliente     *getCliente	 (unsigned int code) const;
     const Funcionario *getFuncionario(unsigned int code) const;
+
+    void addPontos(const Cliente *cliente, int diarias) const;
 };
 
 #endif
