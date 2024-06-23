@@ -26,7 +26,9 @@ Estadia::Estadia(
 	this -> quarto  = quartosHandler -> getQuarto(numeroDoQuarto);
 }
 
-const int	  Estadia::getDiarias() 	 const { return this -> diarias; }
-const Quarto* Estadia::getQuarto()  	 const { return this -> quarto; }
-const time_t  Estadia::getCheckInDate()  const { return this -> dataEntrada; }
-const time_t  Estadia::getCheckOutDate() const { return this -> dataSaida; }
+const uint	   Estadia::getCodigo()		  const { return this -> codigo; }
+const int	   Estadia::getDiarias() 	  const { return this -> diarias; }
+const Cliente* Estadia::getCliente()	  const { return this -> cliente; }
+const Quarto*  Estadia::getQuarto()  	  const { return this -> quarto; }
+const time_t   Estadia::getCheckInDate()  const { return this -> dataEntrada; }
+const time_t   Estadia::getCheckOutDate() const { return this -> dataSaida; }

@@ -19,9 +19,29 @@ Construtor da classe que inicializa os atributos com os valores passados como pa
 Caso a `dataSaida` seja menor ou igual à `dataEntrada`, uma exceção é lançada.
 Caso alguma das datas passadas sejam inválidas um exceção é lançada.
 
+### const uint getCodigo() const
+
+Retorna o `codigo`.
+
 ### const int getDiarias() const
 
 Retorna o número de diárias da estadia.
+
+### const Cliente *getCliente() const
+
+Retorna um ponteiro readonly para o cliente que foi cadastrado na estadia.
+
+### const Quarto *getQuarto() const
+
+Retorna um ponteiro readonly para o quarto que foi cadastrado na estadia.
+
+### const time_t getCheckInDate const
+
+Retorna a `dataEntrada` como readonly.
+
+### const time_t getCheckOutDate const
+
+Retorna a `dataSaida` como readonly.
 
 # Estadias
 

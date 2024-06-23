@@ -25,10 +25,12 @@ public:
 		unsigned int numeroDoQuarto
 	);
 
-	const int 	  getDiarias() 		const;
-	const Quarto *getQuarto() 		const;
-	const time_t  getCheckInDate()  const;
-	const time_t  getCheckOutDate() const;
+	const uint	   getCodigo() 		 const;
+	const int 	   getDiarias() 	 const;
+	const Cliente *getCliente()		 const;
+	const Quarto  *getQuarto() 		 const;
+	const time_t   getCheckInDate()  const;
+	const time_t   getCheckOutDate() const;
 };
 
 #endif
