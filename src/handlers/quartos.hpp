@@ -14,6 +14,7 @@ public:
 	const Quarto* criarQuarto(int numero, float valorDiaria);
 	const Quarto* getQuarto  (int numero) const;
 	void          setStatus  (int numero, bool status);
+	void		  setStatus  (const Quarto *quarto, bool status);
 	const bool	  getStatus  (int numero) const;
 };
 

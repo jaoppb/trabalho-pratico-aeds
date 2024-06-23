@@ -45,6 +45,10 @@ void Quartos::setStatus(int numero, bool status) {
 	throw std::runtime_error("Número do quarto inválido");
 }
 
+void Quartos::setStatus(const Quarto *quarto, bool status) {
+	this -> setStatus(quarto -> getNumero(), status);
+}
+
 const bool Quartos::getStatus(int numero) const {
 	return this -> getQuarto(numero) -> getStatus();
 
