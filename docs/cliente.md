@@ -1,5 +1,6 @@
 # Clientes
-Classe derivade de Pessoa
+
+Classe derivada de Pessoa
 
 ## Atributos 
 
@@ -12,11 +13,12 @@ Classe derivade de Pessoa
 ## Métodos
 
 ### Cliente(unsigned int codigo, unsigned int telefone, std::string nome, std::string endereco)
+
 Construtor da classe que inicializa os atributos com os valores passados como parâmtros
 
-### int getPontos()
+### const int getPontos() const
 
-retorna os `pontos` totais.
+Retorna os `pontos` totais.
 
 ### void addPontos(int diarias)
 
@@ -29,6 +31,3 @@ Retorna o `endereço` cadastrado.
 ### void setEndereco(string endereco) 
 
 Modifica o `endereço`.
-
-
-

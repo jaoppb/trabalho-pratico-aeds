@@ -17,7 +17,7 @@ Cliente::Cliente(
     }
 }
 
-int Cliente::getPontos() { return this->pontos; }
+const int Cliente::getPontos() { return this->pontos; }
 
 void Cliente::addPontos(int diarias) {
     if (diarias < 0) {

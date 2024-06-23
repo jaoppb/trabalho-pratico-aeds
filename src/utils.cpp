@@ -21,6 +21,5 @@ time_t parseDate(std::string date) {
 		 strptime(date.c_str(), "%d/%m/%Y"			 , &time) == NULL) ||
 		time.tm_mday > _getMonthDays(time.tm_mon, time.tm_year + 1900))
 		throw std::runtime_error("Data inválida");
-
-	return std::mktime(&time);
+	return difftime(std::mktime(&time), timezone);
 }

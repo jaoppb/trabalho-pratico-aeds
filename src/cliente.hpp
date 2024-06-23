@@ -20,7 +20,7 @@ public:
         std::string endereco
     );
 
-    int getPontos();
+    const int getPontos() const;
 
     void addPontos(int diarias);
 
