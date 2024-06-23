@@ -8,9 +8,9 @@ Cliente::Cliente(
     unsigned int pontos,
     std::string nome,
     std::string endereco
-    ): Pessoa(codigo, telefone, nome), endereco(endereco), pontos(0) {}
+    ): Pessoa(codigo, telefone, nome), endereco(endereco), pontos(pontos) {}
 
-int Cliente::getPontos() { return this-> pontos; }
+const int Cliente::getPontos() const { return this-> pontos; }
 
 void Cliente::addPontos(int diarias) { this->pontos += diarias*10; }
 
