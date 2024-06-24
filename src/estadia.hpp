@@ -25,7 +25,7 @@ public:
 		unsigned int numeroDoQuarto
 	);
 
-	const uint	   getCodigo() 		 const;
+	const int	   getCodigo() 		 const;
 	const int 	   getDiarias() 	 const;
 	const Cliente *getCliente()		 const;
 	const Quarto  *getQuarto() 		 const;

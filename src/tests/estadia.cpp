@@ -7,12 +7,12 @@ TEST_CASE("Testes básicos para a Classe Estadia") {
     //cadastrar quarto
     const Quarto *quarto = quartosHandler -> criarQuarto(12, 1.0f);
     REQUIRE(quarto != nullptr);
-    const uint roomNum = quarto -> getNumero();
+    const int roomNum = quarto -> getNumero();
 
     //cadastrar cliente
     const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
     REQUIRE(cliente != nullptr);
-    const uint clientCode = cliente -> getCodigo();
+    const int clientCode = cliente -> getCodigo();
 
 	{
 		CHECK(Estadia(10, "24/07/2024", "25/07/2024", clientCode, roomNum).getDiarias() ==  1);
@@ -55,12 +55,12 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
     //registra um quarto
     const Quarto *quarto = quartosHandler -> criarQuarto(123, 12.0f);
     REQUIRE(quarto != nullptr);
-    const uint roomNum = quarto -> getNumero();
+    const int roomNum = quarto -> getNumero();
 
     //registra um cliente
     const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
     REQUIRE(cliente != nullptr);
-    const uint clientCode = cliente -> getCodigo();
+    const int clientCode = cliente -> getCodigo();
 
     {
         const Estadia* estadia = estadiasHandler -> agendarEstadia("23/06/2024", "25/06/2024", clientCode, roomNum);

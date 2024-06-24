@@ -27,5 +27,6 @@ add_executable(
 	src/tests/estadia.cpp
 	src/tests/utils.cpp
 	src/tests/cliente.cpp
+	src/tests/funcionario.cpp
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain DescansoGarantido_LIB)
