@@ -32,6 +32,8 @@ public:
 
 	const Estadia* agendarEstadia(std::string dataEntrada, std::string dataSaida, int codigoCliente, int numeroDoQuarto);
 	float darBaixa(unsigned int code);
+	const Estadia* getEstadia(unsigned int code);
+	const std::vector<Estadia*> getEstadia(std::string date);
 };
 
 #endif

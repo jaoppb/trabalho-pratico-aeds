@@ -126,3 +126,17 @@ float Estadias::darBaixa(unsigned int code) {
 	if(estadia == nullptr) throw std::runtime_error("Estadia não encontrada");
 	return this -> _darBaixa(estadia);
 }
+
+const Estadia* Estadias::getEstadia(unsigned int code) {
+	return this->_getEstadia(code);
+}
+
+const std::vector<Estadia*> Estadias::getEstadia(std::string date) {
+	std::vector<Estadia*> result({});
+	time_t dateTM = parseDate(date);
+	for(Estadia *estadia: this->estadias) {
+		if(estadia->getCheckInDate() <= dateTM && dateTM <= estadia->getCheckOutDate())
+			result.push_back(estadia);
+	}
+	return result;
+}
