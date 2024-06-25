@@ -43,9 +43,6 @@ public:
     const std::vector<Funcionario*> getFuncionario(std::string name) const;
 
     void addPontos(const Cliente *cliente, int diarias) const;
-
-    std::vector<Pessoa*> pesquisarPessoaPorNome(const std::string& nome) const;
-    Pessoa* pesquisarPessoaPorCodigo(unsigned int codigo) const;
 };
 
 #endif
