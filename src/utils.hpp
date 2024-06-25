@@ -10,4 +10,6 @@ time_t getCurrentTimestamp();
 
 void toLower(std::string &str);
 
+void handleTimestamp(int *result, time_t timestamp);
+
 #endif
