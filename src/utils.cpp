@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <bits/stdc++.h>
 
 #include "utils.hpp"
 
@@ -24,3 +25,7 @@ time_t parseDate(std::string date) {
 }
 
 time_t getCurrentTimestamp() { return difftime(std::time(0), timezone); }
+
+void toLower(std::string &str) {
+	std::transform(str.begin(), str.end(), str.begin(), ::tolower);
+}

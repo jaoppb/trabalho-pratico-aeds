@@ -8,4 +8,6 @@ time_t parseDate(std::string date);
 
 time_t getCurrentTimestamp();
 
+void toLower(std::string &str);
+
 #endif
