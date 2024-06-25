@@ -3,6 +3,7 @@
 #include <string>
 
 #include "global.hpp"
+#include "utils.hpp"
 
 bool registerClient() {
 	std::string name = "";
@@ -144,10 +145,13 @@ void searchEstadias() {
 				std::cout << "\nNenhuma estadia encontrada para o cliente com código " << clientCode << ".\n" << std::endl;
 			} else {
 				for (Estadia* estadia : estadias) {
+					int checkIn[6], checkOut[6];
+					handleTimestamp(checkIn , estadia->getCheckInDate ());
+					handleTimestamp(checkOut, estadia->getCheckOutDate());
 					std::cout << "\nEstadia encontrada: \n";
 					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
-					std::cout << " - Data de Entrada: " << estadia->getCheckInDate() << std::endl;
-					std::cout << " - Data de Saída: " << estadia->getCheckOutDate() << std::endl;
+					std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
+					std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
 					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
 					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
 				}
@@ -167,10 +171,13 @@ void searchEstadias() {
 				std::cout << "\nNenhuma estadia encontrada para o quarto com número " << roomNumber << ".\n" << std::endl;
 			} else {
 				for (Estadia* estadia : estadias) {
+					int checkIn[6], checkOut[6];
+					handleTimestamp(checkIn , estadia->getCheckInDate ());
+					handleTimestamp(checkOut, estadia->getCheckOutDate());
 					std::cout << "\nEstadia encontrada: \n";
 					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
-					std::cout << " - Data de Entrada: " << estadia->getCheckInDate() << std::endl;
-					std::cout << " - Data de Saída: " << estadia->getCheckOutDate() << std::endl;
+					std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
+					std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
 					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
 					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
 				}
@@ -305,7 +312,11 @@ void menu() {
 			else std::cout << "\nPara cadastrar uma estadia primeiro é necessário que um quarto e um cliente estejam cadastrados.\n" << std::endl;
 			break;
 		case 5:
-			if (employeeRegistered == true || clientRegistered == true) searchPessoas();
+			if (employeeRegistered == true || clientRegistered == true) {
+				searchPessoas();
+			}else{
+				std::cout << "Para pesquisar por um funcionário ou cliente, primeiro é necessário que um ao menos um dos dois estejam cadastrados.\n" << std::endl;
+			}
 			break;
 		case 6:
 			if(stayRegistered == true) searchEstadias();
