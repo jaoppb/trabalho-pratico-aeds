@@ -32,3 +32,5 @@ add_executable(
 	src/tests/files.cpp
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain DescansoGarantido_LIB)
+
+file(CREATE_LINK ${CMAKE_CURRENT_SOURCE_DIR}/data ${CMAKE_CURRENT_BINARY_DIR}/data SYMBOLIC)
