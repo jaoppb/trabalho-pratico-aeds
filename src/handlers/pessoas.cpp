@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "pessoas.hpp"
+#include "../utils.hpp"
 
 Pessoas::Pessoas(bool load): pessoas({}), fileHandler("./data/pessoas.bin") {
 	if(load) this->load();
@@ -159,8 +160,11 @@ const Funcionario *Pessoas::getFuncionario(unsigned int codigo) const {
 
 const std::vector<Pessoa*> Pessoas::getPessoa(std::string name) const {
 	std::vector<Pessoa*> result;
+	toLower(name);
 	for(Pessoa *pessoa: this->pessoas) {
-		if(pessoa->getNome().find(name) != std::string::npos)
+		std::string nomePessoa = pessoa->getNome();
+		toLower(nomePessoa);
+		if(nomePessoa.find(name) != std::string::npos)
 			result.push_back(pessoa);
 	}
 	return result;
