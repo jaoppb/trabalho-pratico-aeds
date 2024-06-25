@@ -37,6 +37,8 @@ public:
 
 	const std::vector<Estadia*> getEstadias(unsigned int clientCode);
 	const std::vector<Estadia*> getEstadiasByRoom(unsigned int roomNumber);
+
+	const bool isAvaliable(unsigned int roomNumber, time_t checkIn, time_t checkOut);
 };
 
 #endif

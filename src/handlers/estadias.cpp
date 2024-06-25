@@ -151,11 +151,21 @@ const std::vector<Estadia*> Estadias::getEstadias(unsigned int clientCode) {
 }
 
 const std::vector<Estadia*> Estadias::getEstadiasByRoom(unsigned int roomNumber) {
-		std::vector<Estadia*> result;
-		for (Estadia* estadia : estadias) {
-				if (estadia->getQuarto()->getNumero() == roomNumber) {
-						result.push_back(estadia);
-				}
+	std::vector<Estadia*> result;
+	for (Estadia* estadia : estadias) {
+		if (estadia->getQuarto()->getNumero() == roomNumber) {
+			result.push_back(estadia);
 		}
-		return result;
+	}
+	return result;
+}
+
+
+const bool Estadias::isAvaliable(unsigned int roomNumber, time_t checkIn, time_t checkOut) {
+	const std::vector<Estadia*> estadias = this->getEstadiasByRoom(roomNumber);
+	for(Estadia *estadia: estadias) {
+		if(!((estadia -> getCheckOutDate() < checkIn) ||
+			  checkOut < estadia -> getCheckInDate())) return false;
+	}
+	return true;
 }
