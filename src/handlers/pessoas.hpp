@@ -27,6 +27,9 @@ public:
     const Funcionario *getFuncionario(unsigned int code) const;
 
     void addPontos(const Cliente *cliente, int diarias) const;
+
+    std::vector<Pessoa*> pesquisarPessoaPorNome(const std::string& nome) const;
+    Pessoa* pesquisarPessoaPorCodigo(unsigned int codigo) const;
 };
 
 #endif
