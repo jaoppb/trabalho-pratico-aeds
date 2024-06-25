@@ -19,6 +19,8 @@ public:
 
 	void load();
 
+	const size_t getTotal() const;
+
 	const Quarto* criarQuarto(unsigned int numero, float valorDiaria);
 	const Quarto* getQuarto  (unsigned int numero) const;
 	void          setStatus  (unsigned int numero, bool status);

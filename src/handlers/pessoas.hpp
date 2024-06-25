@@ -27,6 +27,10 @@ public:
 
     void load();
 
+    const size_t getTotal() const;
+    const size_t getTotalClients() const;
+    const size_t getTotalEmployess() const;
+
     const Cliente     *cadastrarCliente   (unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos);
     const Funcionario *cadastrarFuncionaro(unsigned int telefone, std::string nome, std::string cargo, float salario);
 

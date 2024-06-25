@@ -28,6 +28,8 @@ public:
 
 	void load();
 
+	const size_t getTotal() const;
+
 	const Estadia* agendarEstadia(std::string dataEntrada, std::string dataSaida, int codigoCliente, int numeroDoQuarto);
 	float darBaixa(unsigned int code);
 };

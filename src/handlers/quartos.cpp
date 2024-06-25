@@ -48,6 +48,8 @@ Quarto *Quartos::_loadQuarto(unsigned int numero, float valorDiaria, unsigned in
 	return quarto;
 }
 
+const size_t Quartos::getTotal() const { return this->quartos.size(); }
+
 const Quarto* Quartos::criarQuarto(unsigned int numero, float valorDiaria) {
 	int length = this -> quartos.size();
 	for(int i = 0; i < length; i++) {

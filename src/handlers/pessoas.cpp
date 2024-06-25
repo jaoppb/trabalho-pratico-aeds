@@ -107,6 +107,24 @@ Funcionario *Pessoas::_loadFuncionaro(unsigned int code, unsigned int telefone, 
 	return funcionario;
 }
 
+const size_t Pessoas::getTotal() const { return this->pessoas.size(); }
+
+const size_t Pessoas::getTotalClients() const {
+	size_t result = 0;
+	for(Pessoa *pessoa: this->pessoas) {
+		if(dynamic_cast<Cliente*>(pessoa) != NULL) result++;
+	}
+	return result;
+}
+
+const size_t Pessoas::getTotalEmployess() const {
+	size_t result = 0;
+	for(Pessoa *pessoa: this->pessoas) {
+		if(dynamic_cast<Funcionario*>(pessoa) != NULL) result++;
+	}
+	return result;
+}
+
 const Cliente *Pessoas::cadastrarCliente(unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos) {
 	Cliente *cliente = new Cliente(this -> nextCode, telefone, pontos, nome, endereco);
 	this -> pessoas.push_back(cliente);
