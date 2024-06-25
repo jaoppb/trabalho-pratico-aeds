@@ -14,7 +14,7 @@ private:
 public:
     Cliente(
         unsigned int codigo,
-        unsigned int telefone,
+        double telefone,
         unsigned int pontos,
         std::string nome,
         std::string endereco
