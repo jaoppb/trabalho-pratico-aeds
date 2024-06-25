@@ -7,7 +7,7 @@
 bool registerClient() {
 	std::string name = "";
 	std::string address = "";
-	double cellPhone = 0;
+	std::string cellPhone = "";
 	unsigned int points = 0;
 
 	std::cout << "\nInforme seu nome: " << std::endl;
@@ -52,7 +52,7 @@ bool registerRoom() {
 }
 
 bool registerEmploye() {
-	unsigned int cellPhone = 0;
+	std::string cellPhone = "";
 	std::string name = "";
 	std::string cargo = "";
 	float wage = 0.0;
@@ -223,7 +223,7 @@ void menu() {
 			else std::cout << "\nPara cadastrar uma estadia primeiro é necessário que um quarto e um cliente estejam cadastrados.\n" << std::endl;
 			break;
 		case 5:
-			if (employeeRegistered == true && clientRegistered == true) searchPessoas();
+			if (employeeRegistered == true || clientRegistered == true) searchPessoas();
 			break;
 		case 6:
 			break;
