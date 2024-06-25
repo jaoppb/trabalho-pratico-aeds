@@ -15,13 +15,13 @@ void Pessoas::load() {
 
 	while(!this->fileHandler.isEOF()) {
 		char type;
-		unsigned int code, number, points;
+		unsigned int code, points;
 		float wage;
-		std::string name, address, role;
+		std::string number, name, address, role;
 
 		this->fileHandler.read((void*)&type, sizeof(type));
 		this->fileHandler.read((void*)&code, sizeof(code));
-		this->fileHandler.read((void*)&number, sizeof(number));
+		this->fileHandler.read(number);
 		this->fileHandler.read(name);
 
 		if(type == 'c') {
@@ -45,9 +45,9 @@ Pessoas::~Pessoas () {
 	this->fileHandler.write((void*)&this->nextCode, sizeof(this->nextCode));
     for(Pessoa *pessoa: this -> pessoas) {
 		char type = '\0';
-		unsigned int code, number, points;
+		unsigned int code, points;
 		float wage;
-		std::string name, address, role;
+		std::string number, name, address, role;
 
 		code   = pessoa->getCodigo();
 		number = pessoa->getTelefone();
@@ -60,7 +60,7 @@ Pessoas::~Pessoas () {
 		this->fileHandler.write((void*)&type, sizeof(type));
 
 		this->fileHandler.write((void*)&code, sizeof(code));
-		this->fileHandler.write((void*)&number, sizeof(number));
+		this->fileHandler.write(number);
 		this->fileHandler.write(name);
 
 		if(cliente != NULL) {
@@ -96,13 +96,13 @@ Funcionario *Pessoas::_getFuncionario(unsigned int codigo) const {
 	return dynamic_cast<Funcionario*>(this -> _getPessoa(codigo));
 }
 
-Cliente *Pessoas::_loadCliente(unsigned int code, unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos) {
-	Cliente *cliente = new Cliente(code, telefone, pontos, nome, endereco);
+Cliente *Pessoas::_loadCliente(unsigned int code, std::string telefone, std::string nome, std::string endereco, unsigned int pontos) {
+	Cliente *cliente = new Cliente(code, pontos, telefone, nome, endereco);
 	this->pessoas.push_back(cliente);
 	return cliente;
 }
 
-Funcionario *Pessoas::_loadFuncionaro(unsigned int code, unsigned int telefone, std::string nome, std::string cargo, float salario) {
+Funcionario *Pessoas::_loadFuncionaro(unsigned int code, std::string telefone, std::string nome, std::string cargo, float salario) {
 	Funcionario *funcionario = new Funcionario(code, telefone, nome, cargo, salario);
 	this->pessoas.push_back(funcionario);
 	return funcionario;
@@ -126,14 +126,14 @@ const size_t Pessoas::getTotalEmployess() const {
 	return result;
 }
 
-const Cliente *Pessoas::cadastrarCliente(unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos) {
-	Cliente *cliente = new Cliente(this -> nextCode, telefone, pontos, nome, endereco);
+const Cliente *Pessoas::cadastrarCliente(std::string telefone, std::string nome, std::string endereco, unsigned int pontos) {
+	Cliente *cliente = new Cliente(this -> nextCode, pontos, telefone, nome, endereco);
 	this -> pessoas.push_back(cliente);
 	this -> nextCode++;
 	return cliente;
 }
 
-const Funcionario *Pessoas::cadastrarFuncionaro(unsigned int telefone, std::string nome, std::string cargo, float salario) {
+const Funcionario *Pessoas::cadastrarFuncionaro(std::string telefone, std::string nome, std::string cargo, float salario) {
 	Funcionario *funcionario = new Funcionario(this -> nextCode, telefone, nome, cargo, salario);
 	this -> pessoas.push_back(funcionario);
 	this -> nextCode++;

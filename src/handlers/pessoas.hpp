@@ -19,8 +19,8 @@ private:
     Cliente     *_getCliente    (unsigned int code) const;
     Funcionario *_getFuncionario(unsigned int code) const;
 
-    Cliente     *_loadCliente   (unsigned int code, unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos);
-    Funcionario *_loadFuncionaro(unsigned int code, unsigned int telefone, std::string nome, std::string cargo, float salario);
+    Cliente     *_loadCliente   (unsigned int code, std::string telefone, std::string nome, std::string endereco, unsigned int pontos);
+    Funcionario *_loadFuncionaro(unsigned int code, std::string telefone, std::string nome, std::string cargo, float salario);
 public:
     Pessoas(bool load);
     ~Pessoas();
@@ -31,8 +31,8 @@ public:
     const size_t getTotalClients() const;
     const size_t getTotalEmployess() const;
 
-    const Cliente     *cadastrarCliente   (unsigned int telefone, std::string nome, std::string endereco, unsigned int pontos);
-    const Funcionario *cadastrarFuncionaro(unsigned int telefone, std::string nome, std::string cargo, float salario);
+    const Cliente     *cadastrarCliente   (std::string telefone, std::string nome, std::string endereco, unsigned int pontos);
+    const Funcionario *cadastrarFuncionaro(std::string telefone, std::string nome, std::string cargo, float salario);
 
     const Pessoa      *getPessoa	 (unsigned int code) const;
     const Cliente     *getCliente	 (unsigned int code) const;

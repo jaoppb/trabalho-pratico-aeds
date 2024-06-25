@@ -4,8 +4,8 @@
 
 Cliente::Cliente(//implementação do construtor da classe Cliente
     unsigned int codigo,
-    double telefone,
     unsigned int pontos,
+    std::string telefone,
     std::string nome,
     std::string endereco
     ): Pessoa(codigo, telefone, nome), endereco(endereco), pontos(pontos) {//inicialização dos atributos herdados da classe Pessoa e também da prórpia classe Cliente

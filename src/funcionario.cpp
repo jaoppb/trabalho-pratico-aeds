@@ -5,7 +5,7 @@
 //class Funcionario
 Funcionario::Funcionario( //implementação do construtor da classe Funcionário
     unsigned int codigo,
-    double telefone,
+    std::string telefone,
     std::string nome,
     std::string cargo,
     float salario

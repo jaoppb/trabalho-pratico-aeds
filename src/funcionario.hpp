@@ -13,7 +13,7 @@ private:
 public:
     Funcionario(
         unsigned int codigo,
-        double telefone,
+        std::string telefone,
         std::string nome,
         std::string cargo,
         float salario

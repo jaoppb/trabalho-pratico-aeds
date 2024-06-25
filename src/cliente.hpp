@@ -14,8 +14,8 @@ private:
 public:
     Cliente(
         unsigned int codigo,
-        double telefone,
         unsigned int pontos,
+        std::string telefone,
         std::string nome,
         std::string endereco
     );//construtor da classe Cliente
