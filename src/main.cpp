@@ -112,7 +112,7 @@ bool scheduleEstadia() {
 
 	const std::vector<Quarto*> quartos = quartosHandler->getRoomsByCapacity(guests);
 	if(quartos.empty()) {
-		std::cout << "\nNenhum quarto disponível com essa capacidade disponível. Insira outra";
+		std::cout << "\nNenhum quarto disponível com essa capacidade disponível.";
 		return false;
 	}
 
