@@ -94,8 +94,9 @@ bool registerEmploye() {
 bool scheduleEstadia() {
 	std::string entryDate;
 	std::string exitDate;
-	int clientCode;
-	int numberRoom;
+	unsigned int guests,
+		 		 clientCode,
+				 numberRoom;
 
 	std::cout << "\nPara o cadastro de uma estadia, por favor digite a data de entrada desejada no formato (dd/mm/aaaa) " << std::endl;
 	std::cin >> entryDate;
@@ -105,6 +106,28 @@ bool scheduleEstadia() {
 
 	std::cout << "\nInforme o código do cliente " << std::endl;
 	std::cin >> clientCode;
+
+	std::cout << "\nInforme a quantidade de hospedes:" << std::endl;
+	std::cin >> guests;
+
+	const std::vector<Quarto*> quartos = quartosHandler->getRoomsByCapacity(guests);
+	if(quartos.empty()) {
+		std::cout << "\nNenhum quarto disponível com essa capacidade disponível. Insira outra";
+		return false;
+	}
+
+	bool one = false;
+	for(Quarto *quarto: quartos) {
+		if(!estadiasHandler->isAvaliable(quarto->getNumero(), parseDate(entryDate), parseDate(exitDate))) continue;
+		std::cout << "Quarto N°" 	   << quarto->getNumero() << std::endl
+				  << " - Capacidade: " << quarto->getQuantidadeDeHospedes() << std::endl
+				  << " - Diaria: " 	   << quarto->getDiaria() << std::endl << std::endl;
+		one = true;
+	}
+	if(!one) {
+		std::cout << "\nNenhum quarto disponível nessa data com essa capacidade.";
+		return false;
+	}
 
 	std::cout << "\nInforme o quarto do cliente " << std::endl;
 	std::cin >> numberRoom;
