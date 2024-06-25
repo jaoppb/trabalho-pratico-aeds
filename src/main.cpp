@@ -19,6 +19,7 @@ bool registerClient() {
 
 	std::cout << "\nInforme seu número de telefone: " << std::endl;
 	std::cin >> cellPhone;
+	std::cin.ignore();
 
 	try {
 		const Cliente *cliente = pessoasHandler->cadastrarCliente(cellPhone, name, address, points);
@@ -39,19 +40,22 @@ bool registerRoom() {
 	unsigned int number = 0, guests = 1;
 	float dailyValue = 0;
 
-	std::cout << "Informe o número do quarto desejado:" << std::endl;
+	std::cout << "\nInforme o número do quarto desejado:" << std::endl;
 	std::cin >> number;
+	std::cin.ignore();
 
-	std::cout << "Informe o valor da diária(separe decimal com utilizando .):" << std::endl;
+	std::cout << "\nInforme o valor da diária(separe decimal com utilizando .):" << std::endl;
 	std::cin >> dailyValue;
+	std::cin.ignore();
 
-	std::cout << "Insira a capacidade do quarto:" << std::endl;
+	std::cout << "\nInsira a capacidade do quarto:" << std::endl;
 	std::cin >> guests;
+	std::cin.ignore();
 
 	try {
 		quartosHandler->criarQuarto(number, dailyValue, guests);
 
-		std::cout << "Quarto " << number << " cadastrado com sucesso.\n";
+		std::cout << "\nQuarto " << number << " cadastrado com sucesso.\n";
 
 		return true;
 	} catch (std::runtime_error &err) {
@@ -75,9 +79,11 @@ bool registerEmploye() {
 
 	std::cout << "\nInforme o salário do funcionário " << std::endl;
 	std::cin >> wage;
+	std::cin.ignore();
 
 	std::cout << "\nInforme o número de telefone do funcionário " << std::endl;
 	std::cin >> cellPhone;
+	std::cin.ignore();
 
 	try {
 		pessoasHandler->cadastrarFuncionaro(cellPhone, name, cargo, wage);
@@ -100,15 +106,23 @@ bool scheduleEstadia() {
 
 	std::cout << "\nPara o cadastro de uma estadia, por favor digite a data de entrada desejada no formato (dd/mm/aaaa) " << std::endl;
 	std::cin >> entryDate;
+	std::cin.ignore();
+
+	entryDate += " - 14:00:00";
 
 	std::cout << "\nDigite a data de saída também no mesmo formato" << std::endl;
 	std::cin >> exitDate;
+	std::cin.ignore();
+
+	exitDate += " - 12:00:00";
 
 	std::cout << "\nInforme o código do cliente " << std::endl;
 	std::cin >> clientCode;
+	std::cin.ignore();
 
 	std::cout << "\nInforme a quantidade de hospedes:" << std::endl;
 	std::cin >> guests;
+	std::cin.ignore();
 
 	const std::vector<Quarto*> quartos = quartosHandler->getRoomsByCapacity(guests);
 	if(quartos.empty()) {
@@ -119,9 +133,9 @@ bool scheduleEstadia() {
 	bool one = false;
 	for(Quarto *quarto: quartos) {
 		if(!estadiasHandler->isAvaliable(quarto->getNumero(), parseDate(entryDate), parseDate(exitDate))) continue;
-		std::cout << "Quarto N°" 	   << quarto->getNumero() << std::endl
+		std::cout << "\nQuarto N°" 	   << quarto->getNumero() << std::endl
 				  << " - Capacidade: " << quarto->getQuantidadeDeHospedes() << std::endl
-				  << " - Diaria: " 	   << quarto->getDiaria() << std::endl << std::endl;
+				  << " - Diaria: " 	   << quarto->getDiaria();
 		one = true;
 	}
 	if(!one) {
@@ -129,8 +143,9 @@ bool scheduleEstadia() {
 		return false;
 	}
 
-	std::cout << "\nInforme o quarto do cliente " << std::endl;
+	std::cout << "\n\nInforme o quarto do cliente " << std::endl;
 	std::cin >> numberRoom;
+	std::cin.ignore();
 
 	try
 	{
@@ -171,7 +186,7 @@ void searchPessoas() {
 				Funcionario *funcionario = dynamic_cast<Funcionario *>(pessoa);
 
 				if (cliente) {
-					std::cout << "\nCliente encontrado: \n" << std::endl;
+					std::cout << "\nCliente encontrado:" << std::endl;
 					std::cout << " - Código: " << cliente->getCodigo() << std::endl;
 					std::cout << " - Nome: " << cliente->getNome() << std::endl;
 					std::cout << " - Telefone: " << cliente->getTelefone() << std::endl;
@@ -191,6 +206,7 @@ void searchPessoas() {
 		unsigned int codigo;
 		std::cout << "\nDigite o código da pessoa que deseja pesquisar: " << std::endl;
 		std::cin >> codigo;
+		std::cin.ignore();
 
 		const Pessoa *pessoaEncontrada = pessoasHandler->getPessoa(codigo);
 
@@ -237,6 +253,7 @@ void searchEstadias() {
 		unsigned int clientCode;
 		std::cout << "\nDigite o código do cliente: " << std::endl;
 		std::cin >> clientCode;
+		std::cin.ignore();
 
 		try {
 			std::vector<Estadia*> estadias = estadiasHandler->getEstadias(clientCode);
@@ -265,6 +282,7 @@ void searchEstadias() {
 		unsigned int roomNumber;
 		std::cout << "\nDigite o número do quarto: " << std::endl;
 		std::cin >> roomNumber;
+		std::cin.ignore();
 
 		try {
 			std::vector<Estadia*> estadias = estadiasHandler->getEstadiasByRoom(roomNumber);
@@ -332,6 +350,8 @@ void checkOutStay(){
 	unsigned int codeStay;
 	std::cout << "\nInforme o código da estadia à dar baixa: " << std::endl;
 	std::cin >> codeStay;
+	std::cin.ignore();
+
 	try {
 		float value = estadiasHandler->darBaixa(codeStay);
 		std::cout << "\nBaixa de R$ " << value << " realizada com sucesso!\n" << std::endl;
@@ -357,8 +377,14 @@ void menu() {
 				  << "6 - Pesquisar estadias\n"
 				  << "7 - Dar baixa em uma estadia\n"
 				  << "0 - Sair do menu.\n" << std::endl;
-		std::cin >> result;
-		std::cin.ignore();
+		std::string line;
+		std::getline(std::cin, line);
+		try {
+			result = stoi(line);
+		} catch(std::invalid_argument &err) {
+			std::cout << "Você não utilizou um número tente novamente";
+			result = -1;
+		} 
 
 		switch (result) {
 		case 1:
@@ -372,28 +398,25 @@ void menu() {
 			break;
 		case 4:
 			if (roomRegistered == true && clientRegistered == true && scheduleEstadia()) stayRegistered = true;
-			else std::cout << "\nPara cadastrar uma estadia primeiro é necessário que um quarto e um cliente estejam cadastrados.\n" << std::endl;
+			else std::cout << "\nPara cadastrar uma estadia primeiro é necessário que um quarto e um cliente estejam cadastrados.\n";
 			break;
 		case 5:
-			if (employeeRegistered == true || clientRegistered == true) {
-				searchPessoas();
-			}else{
-				std::cout << "Para pesquisar por um funcionário ou cliente, primeiro é necessário que um ao menos um dos dois estejam cadastrados.\n" << std::endl;
-			}
+			if (employeeRegistered == true || clientRegistered == true) searchPessoas();
+			else std::cout << "\nPara pesquisar por um funcionário ou cliente, primeiro é necessário que um ao menos um dos dois estejam cadastrados.\n";
 			break;
 		case 6:
 			if(stayRegistered == true) searchEstadias();
-			else std::cout << "\nPara pesquisar uma estadia é necessário que pelo menos uma já esteja cadastrada.\n" << std::endl;
+			else std::cout << "\nPara pesquisar uma estadia é necessário que pelo menos uma já esteja cadastrada.\n";
 			break;
 		case 7:
 			if(stayRegistered == true) checkOutStay();
-			else std::cout << "\nPara dar baixa em uma estadia é necessário que pelo menos uma já esteja cadastrada.\n" << std::endl;
+			else std::cout << "\nPara dar baixa em uma estadia é necessário que pelo menos uma já esteja cadastrada.\n";
 			break;
 		case 0:
-			std::cout << "Muito obrigado pela preferência, volte sempre!" << std::endl;
+			std::cout << "\nMuito obrigado pela preferência, volte sempre!" << std::endl;
 			break;
 		default:
-			std::cout << "Opção inválida, digite novamente." << std::endl;
+			std::cout << "\nOpção inválida, digite novamente." << std::endl;
 			break;
 		}
 		if (result != 0) result = -1;
