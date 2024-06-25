@@ -53,6 +53,7 @@ bool registerRoom() {
 
 bool registerEmploye() {
 	std::string cellPhone = "";
+
 	std::string name = "";
 	std::string cargo = "";
 	float wage = 0.0;
@@ -110,6 +111,68 @@ bool scheduleEstadia() {
 		std::cout << err.what() << std::endl;
 	}
 	return false;
+}
+
+void searchEstadias() {
+	int searchOption = 0;
+	while (searchOption < 1 || searchOption > 3) {
+		std::cout << "\nEscolha o método de pesquisa de estadias: \n"
+							<< "1 - Pesquisar por código do cliente\n"
+							<< "2 - Pesquisar por número do quarto\n"
+							<< "3 - Sair das pesquisas\n";
+		std::cin >> searchOption;
+	}
+	std::cin.ignore();
+
+	if (searchOption == 1) {
+		unsigned int clientCode;
+		std::cout << "\nDigite o código do cliente: " << std::endl;
+		std::cin >> clientCode;
+
+		try {
+			std::vector<Estadia*> estadias = estadiasHandler->getEstadias(clientCode);
+
+			if (estadias.empty()) {
+				std::cout << "\nNenhuma estadia encontrada para o cliente com código " << clientCode << ".\n" << std::endl;
+			} else {
+				for (Estadia* estadia : estadias) {
+					std::cout << "\nEstadia encontrada: \n";
+					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
+					std::cout << " - Data de Entrada: " << estadia->getCheckInDate() << std::endl;
+					std::cout << " - Data de Saída: " << estadia->getCheckOutDate() << std::endl;
+					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
+					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
+				}
+			}
+		} catch (std::runtime_error &err) {
+			std::cout << err.what() << std::endl;
+		}
+	} else if (searchOption == 2) {
+		unsigned int roomNumber;
+		std::cout << "\nDigite o número do quarto: " << std::endl;
+		std::cin >> roomNumber;
+
+		try {
+			std::vector<Estadia*> estadias = estadiasHandler->getEstadiasByRoom(roomNumber);
+
+			if (estadias.empty()) {
+				std::cout << "\nNenhuma estadia encontrada para o quarto com número " << roomNumber << ".\n" << std::endl;
+			} else {
+				for (Estadia* estadia : estadias) {
+					std::cout << "\nEstadia encontrada: \n";
+					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
+					std::cout << " - Data de Entrada: " << estadia->getCheckInDate() << std::endl;
+					std::cout << " - Data de Saída: " << estadia->getCheckOutDate() << std::endl;
+					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
+					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
+				}
+			}
+		} catch (std::runtime_error &err) {
+			std::cout << err.what() << std::endl;
+		}
+	} else if (searchOption != 3) {
+		std::cout << "\nOpção inválida. Voltando ao menu principal.\n";
+	}
 }
 
 void searchPessoas() {
@@ -187,6 +250,17 @@ void searchPessoas() {
 		std::cout << "\nOpção inválida. Voltando ao menu principal.\n";
 	}
 }
+void checkOutStay(){
+	unsigned int codeStay;
+	std::cout << "\nInforme o código da estadia à dar baixa: " << std::endl;
+	std::cin >> codeStay;
+	try {
+		float value = estadiasHandler->darBaixa(codeStay);
+		std::cout << "\nBaixa de R$ " << value << " realizada com sucesso!\n" << std::endl;
+	} catch(std::runtime_error &err) {
+		std::cout << err.what();	
+	}
+}
 
 void menu() {
 	bool clientRegistered = pessoasHandler->getTotalClients() > 0;
@@ -226,20 +300,12 @@ void menu() {
 			if (employeeRegistered == true || clientRegistered == true) searchPessoas();
 			break;
 		case 6:
+			if(stayRegistered == true) searchEstadias();
+			else std::cout << "\nPara pesquisar uma estadia é necessário que pelo menos uma já esteja cadastrada.\n" << std::endl;
 			break;
 		case 7:
-			if(stayRegistered = true){
-				unsigned int codeStay;
-				std::cout << "\nInforme o código da estadia à dar baixa: " << std::endl;
-				std::cin >> codeStay;
-				try {
-					float value = estadiasHandler->darBaixa(codeStay);
-					std::cout << "\nBaixa de R$ " << value << " realizada com sucesso!\n" << std::endl;
-				} catch(std::runtime_error &err) {
-					std::cout << err.what();	
-				}
-			}
-			
+			if(stayRegistered == true) checkOutStay();
+			else std::cout << "\nPara dar baixa em uma estadia é necessário que pelo menos uma já esteja cadastrada.\n" << std::endl;
 			break;
 		case 0:
 			std::cout << "Muito obrigado pela preferência, volte sempre!" << std::endl;

@@ -34,6 +34,9 @@ public:
 	float darBaixa(unsigned int code);
 	const Estadia* getEstadia(unsigned int code);
 	const std::vector<Estadia*> getEstadia(std::string date);
+
+	const std::vector<Estadia*> getEstadias(unsigned int clientCode);
+	const std::vector<Estadia*> getEstadiasByRoom(unsigned int roomNumber);
 };
 
 #endif
