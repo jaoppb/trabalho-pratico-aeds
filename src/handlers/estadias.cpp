@@ -140,12 +140,22 @@ const std::vector<Estadia*> Estadias::getEstadia(std::string date) {
 	}
 	return result;
 }
+
 const std::vector<Estadia*> Estadias::getEstadias(unsigned int clientCode) {
 	std::vector<Estadia*> result;
 	for (Estadia* estadia : this->estadias) {
 		if (estadia->getCliente()->getCodigo() == clientCode) {
 			result.push_back(estadia);
 		}
+	}
+	return result;
+}
+
+const std::vector<Estadia*> Estadias::getEstadias(std::vector<unsigned int> codes) {
+	std::vector<Estadia*> result;
+	for(unsigned int code: codes) {
+		std::vector<Estadia*> estadias = this->getEstadias(code);
+		for(Estadia* estadia: estadias) result.push_back(estadia);
 	}
 	return result;
 }
