@@ -15,8 +15,10 @@ Estadia::Estadia(
 	unsigned int codigoCliente,
 	unsigned int numeroDoQuarto
 ): codigo(codigo) {
-	this -> dataEntrada = parseDate(dataEntrada + " - 14:00:00");
-	this -> dataSaida   = parseDate(dataSaida   + " - 12:00:00");
+	if(dataEntrada.find(" - 14:00:00") == std::string::npos) dataEntrada += " - 14:00:00";
+	if(dataSaida  .find(" - 12:00:00") == std::string::npos) dataSaida   += " - 12:00:00"; 	
+	this -> dataEntrada = parseDate(dataEntrada);
+	this -> dataSaida   = parseDate(dataSaida);
 
 	if(this -> dataSaida <= this -> dataEntrada) throw std::runtime_error("A data de saida precisa ser no minimo um dia apos a data de entrada");
 
