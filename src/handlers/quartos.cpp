@@ -94,3 +94,12 @@ const bool Quartos::getStatus(unsigned int numero) const {
 
 	throw std::runtime_error("Número do quarto inválido");
 }
+
+const std::vector<Quarto*> Quartos::getRoomsByCapacity(unsigned int capacity) {
+	std::vector<Quarto*> result({});
+	for(Quarto *quarto: this->quartos) {
+		if(quarto->getQuantidadeDeHospedes() >= capacity)
+			result.push_back(quarto);
+	}
+	return result;
+}

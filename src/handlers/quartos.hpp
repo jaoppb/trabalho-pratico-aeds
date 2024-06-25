@@ -26,6 +26,8 @@ public:
 	void          setStatus  (unsigned int numero, bool status);
 	void		  setStatus  (const Quarto *quarto, bool status);
 	const bool	  getStatus  (unsigned int numero) const;
+	
+	const std::vector<Quarto*> getRoomsByCapacity(unsigned int capacity);
 };
 
 #endif
