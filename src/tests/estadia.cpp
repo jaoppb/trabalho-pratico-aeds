@@ -7,7 +7,7 @@ TEST_CASE("Testes básicos para a Classe Estadia") {
     //cadastrar quarto
     const Quarto *quarto = nullptr;
     try {
-        quarto = quartosHandler -> criarQuarto(12, 1.0f);
+        quarto = quartosHandler -> criarQuarto(12, 1.0f, 1);
     } catch(std::runtime_error &err) {
         quarto = quartosHandler -> getQuarto(12);
     }
@@ -65,7 +65,7 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
     //registra um quarto
     const Quarto *quarto = nullptr;
     try {
-        quarto = quartosHandler -> criarQuarto(123, 12.0f);
+        quarto = quartosHandler -> criarQuarto(123, 12.0f, 1);
     } catch(std::runtime_error &err) {
         quarto = quartosHandler -> getQuarto(123);
     }

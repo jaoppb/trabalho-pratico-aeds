@@ -35,14 +35,22 @@ bool registerClient() {
 }
 
 bool registerRoom() {
-	unsigned int number = 0;
-	float dailyValue = 750.0;
+	unsigned int number = 0, guests = 1;
+	float dailyValue = 0;
 
-	std::cout << "\nPara todas as diárias, o valor é de R$750,00. Informe o número do quarto desejado: " << std::endl;
+	std::cout << "Informe o número do quarto desejado:" << std::endl;
 	std::cin >> number;
 
+	std::cout << "Informe o valor da diária(separe decimal com utilizando .):" << std::endl;
+	std::cin >> dailyValue;
+
+	std::cout << "Insira a capacidade do quarto:" << std::endl;
+	std::cin >> guests;
+
 	try {
-		quartosHandler->criarQuarto(number, dailyValue);
+		quartosHandler->criarQuarto(number, dailyValue, guests);
+
+		std::cout << "Quarto " << number << " cadastrado com sucesso.\n";
 
 		return true;
 	} catch (std::runtime_error &err) {
@@ -293,7 +301,7 @@ void menu() {
 			if(registerEmploye()) employeeRegistered = true;
 			break;
 		case 4:
-			if (roomRegistered == true && clientRegistered == true) scheduleEstadia();
+			if (roomRegistered == true && clientRegistered == true && scheduleEstadia()) stayRegistered = true;
 			else std::cout << "\nPara cadastrar uma estadia primeiro é necessário que um quarto e um cliente estejam cadastrados.\n" << std::endl;
 			break;
 		case 5:

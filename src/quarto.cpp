@@ -4,9 +4,10 @@
 
 //Class Quarto
 
-Quarto::Quarto(unsigned int numero, float valorDiaria):
-	numero(numero), diaria(valorDiaria), quantidadeDeHospedes(0), status(false) {
+Quarto::Quarto(unsigned int numero, float valorDiaria, unsigned int guests):
+	numero(numero), diaria(valorDiaria), quantidadeDeHospedes(guests), status(false) {
 	if(valorDiaria <= 0) throw std::runtime_error("O preço da Diária precisa ser positivo");
+	if(guests == 0) throw std::runtime_error("A capacidade do quarto precisa ser maior que zero.");
 }
 
 Quarto::Quarto(

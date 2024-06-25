@@ -11,7 +11,7 @@ private:
 	bool status;
 
 public:
-	Quarto(unsigned int numero, float diaria);
+	Quarto(unsigned int numero, float diaria, unsigned int guests);
 	Quarto(
 		unsigned int numero,
 		float valorDiaria,

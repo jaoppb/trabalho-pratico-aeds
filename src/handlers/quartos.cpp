@@ -50,13 +50,13 @@ Quarto *Quartos::_loadQuarto(unsigned int numero, float valorDiaria, unsigned in
 
 const size_t Quartos::getTotal() const { return this->quartos.size(); }
 
-const Quarto* Quartos::criarQuarto(unsigned int numero, float valorDiaria) {
+const Quarto* Quartos::criarQuarto(unsigned int numero, float valorDiaria, unsigned int guests) {
 	int length = this -> quartos.size();
 	for(int i = 0; i < length; i++) {
 		if(this -> quartos[i] -> getNumero() == numero) throw std::runtime_error("Um quarto com esse número já existe");
 	}
 
-	Quarto *quarto = new Quarto(numero, valorDiaria);
+	Quarto *quarto = new Quarto(numero, valorDiaria, guests);
 	this -> quartos.push_back(quarto);
 	return quarto;
 }
