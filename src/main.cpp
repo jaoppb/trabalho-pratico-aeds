@@ -15,7 +15,7 @@ void Menu()
 		std::cout << "Escolha a opção desejada conforme indicado no menu a seguir: " << std::endl
 				  << "1 - Cadastrar um cliente.\n2 - Cadastrar um quarto.\n3 - Cadastrar um funcionário.\n4 - Cadastrar uma estadia.\n5 - Sair do menu." << std::endl;
 		std::cin >> result;
-		std::cin.ignore();
+		std::cin.ignore();//usado para ignorar caracteres do buffer como \n ou espaço etc 
 
 		switch (result)
 		{
@@ -35,11 +35,11 @@ void Menu()
 			std::cout << "Informe seu número de telefone: " << std::endl;
 			std::cin >> cellPhone;
 
-			pessoasHandler->cadastrarCliente(cellPhone, name, address, points);
+			pessoasHandler->cadastrarCliente(cellPhone, name, address, points);//chama a função de cadastrar cliente da classe Pessoa passando como parâmetro as váriaveis preechidas pelo usuário
 			
 			std::cout << "Cliente cadastrado com sucesso! Seja bem vindo(a) Sr(a). " << name << " ao Hotel Descanso Garantido, aqui o seu descanso é garantido ou seu dinheiro de volta." << std::endl; 
 
-			clienteCadastrado = true;
+			clienteCadastrado = true;//retorna true para indicar que cliente foi cadastrado
 
 			break;
 		}
@@ -51,7 +51,10 @@ void Menu()
 			std::cout << "Para todas as diárias, o valor é de R$750,00. Informe o número do quarto desejado: " << std::endl;
 			std::cin >> number;
 
-			quartosHandler->criarQuarto(number, dailyValue); 
+			quartosHandler->criarQuarto(number, dailyValue); //chama a função de cadastrar o quarto passando as váriaveis como parâmetro 
+
+			quartoCadastrado = true;//retorna true para indicar que quarto foi cadastrado 
+
 			break;
 		}
 		case 3:
@@ -73,17 +76,15 @@ void Menu()
 			std::cout << "Informe o número de telefone do funcionário " << std::endl;
 			std::cin >> cellPhone;
 
-			pessoasHandler->cadastrarFuncionaro(cellPhone, name, cargo, wage);
+			pessoasHandler->cadastrarFuncionaro(cellPhone, name, cargo, wage);//chama a função de cadastrar funcionários passando as váriaveis preenchidas pelo usuário como parâmetro
 
 			std::cout << "Funcionário cadastrado com sucesso ! Seja bem vindo Sr(a) " << name << " ao seu novo ambiente de trabalho. " << std::endl;
-
-			quartoCadastrado = true;
 
 			break;
 		}
 		case 4:
 		{
-			if(quartoCadastrado && clienteCadastrado)
+			if(quartoCadastrado && clienteCadastrado)//cria uma condicional indicando que se quarto e cliente tiverem retornado true quer dizer que foram cadastrados e o cadastro de estadia está liberado
 			{
 				std::string entryDate;
 				std::string exitDate;
@@ -102,7 +103,7 @@ void Menu()
 				std::cout << "Informe o quarto do cliente " << std::endl;
 				std::cin >> numberRoom;
 
-				estadiasHandler->agendarEstadia(entryDate, exitDate, clientCode, numberRoom);
+				estadiasHandler->agendarEstadia(entryDate, exitDate, clientCode, numberRoom);//chama a função de agendar uma estadia passando as variáveis preenchidas como parâmetro
 
 				std::cout << "Estadia cadastrada com sucesso! Aproveite seus dias de descanso no melhor hotel para um bom relaxamento de qualidade da cidade" << std::endl;
 			}
