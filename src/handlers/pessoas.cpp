@@ -160,7 +160,8 @@ const Funcionario *Pessoas::getFuncionario(unsigned int codigo) const {
 const std::vector<Pessoa*> Pessoas::getPessoa(std::string name) const {
 	std::vector<Pessoa*> result;
 	for(Pessoa *pessoa: this->pessoas) {
-		if(pessoa->getNome().find(name)) result.push_back(pessoa);
+		if(pessoa->getNome().find(name) != std::string::npos)
+			result.push_back(pessoa);
 	}
 	return result;
 }
