@@ -1,4 +1,5 @@
 #include <stdexcept>
+#include <vector>
 
 #include "pessoas.hpp"
 
@@ -166,4 +167,16 @@ const std::vector<Funcionario*> Pessoas::getFuncionario(std::string name) const 
 
 void Pessoas::addPontos(const Cliente *cliente, int diarias) const {
 	this -> _getCliente(cliente -> getCodigo()) -> addPontos(diarias);
+}
+std::vector<Pessoa*> Pessoas::pesquisarPessoaPorNome(const std::string& nome) const {
+	std::vector<Pessoa*> resultados;
+	for(Pessoa* pessoa: this->pessoas) {
+			if(pessoa->getNome() == nome) {
+					resultados.push_back(pessoa);
+			}
+	}
+	return resultados;
+}
+Pessoa* Pessoas::pesquisarPessoaPorCodigo(unsigned int codigo) const {
+	return this->_getPessoa(codigo);
 }

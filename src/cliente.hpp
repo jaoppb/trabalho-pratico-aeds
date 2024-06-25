@@ -6,7 +6,7 @@
 
 #include "pessoa.hpp"
 
-class Cliente: public Pessoa {
+class Cliente: public Pessoa {//classe Cliente Herdando da classe Pessoa
 private:
     std::string endereco;
     unsigned int pontos;
@@ -18,15 +18,15 @@ public:
         unsigned int pontos,
         std::string nome,
         std::string endereco
-    );
+    );//construtor da classe Cliente
 
-    const int getPontos() const;
+    const int getPontos() const;//retorna o numero de pontos somente para leitura
 
-    void addPontos(int diarias);
+    void addPontos(int diarias);//método para adicionar pontos ao cliente com base no número de diárias
 
-    std::string getEndereco() const;
+    std::string getEndereco() const;//retorna o endereço do cliente para somente leitura
 
-    void setEndereco(std::string endereco);
+    void setEndereco(std::string endereco);//método para definir o endereço do cliente
 };
 
 #endif
