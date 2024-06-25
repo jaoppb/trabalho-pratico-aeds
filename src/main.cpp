@@ -135,7 +135,7 @@ bool scheduleEstadia() {
 		if(!estadiasHandler->isAvaliable(quarto->getNumero(), parseDate(entryDate), parseDate(exitDate))) continue;
 		std::cout << "\nQuarto N°" 	   << quarto->getNumero() << std::endl
 				  << " - Capacidade: " << quarto->getQuantidadeDeHospedes() << std::endl
-				  << " - Diaria: " 	   << quarto->getDiaria();
+				  << " - Diaria: " 	   << quarto->getDiaria() << std::endl;
 		one = true;
 	}
 	if(!one) {
@@ -143,7 +143,7 @@ bool scheduleEstadia() {
 		return false;
 	}
 
-	std::cout << "\n\nInforme o quarto do cliente " << std::endl;
+	std::cout << "\nInforme o quarto do cliente " << std::endl;
 	std::cin >> numberRoom;
 	std::cin.ignore();
 
@@ -262,15 +262,10 @@ void searchEstadias() {
 				std::cout << "\nNenhuma estadia encontrada para o cliente com código " << clientCode << ".\n" << std::endl;
 			} else {
 				for (Estadia* estadia : estadias) {
-					int checkIn[6], checkOut[6];
-					handleTimestamp(checkIn , estadia->getCheckInDate ());
-					checkIn[2]++ ; checkIn[1]++;
-					handleTimestamp(checkOut, estadia->getCheckOutDate());
-					checkOut[2]++; checkOut[1]++;
 					std::cout << "\nEstadia encontrada: \n";
 					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
-					std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
-					std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
+					std::cout << " - Data de Entrada: " << formatTimestamp(estadia->getCheckInDate()) << std::endl;
+					std::cout << " - Data de Saída: " << formatTimestamp(estadia->getCheckOutDate()) << std::endl;
 					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
 					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
 				}
@@ -291,15 +286,10 @@ void searchEstadias() {
 				std::cout << "\nNenhuma estadia encontrada para o quarto com número " << roomNumber << ".\n" << std::endl;
 			} else {
 				for (Estadia* estadia : estadias) {
-					int checkIn[6], checkOut[6];
-					handleTimestamp(checkIn , estadia->getCheckInDate ());
-					checkIn[2]++ ; checkIn[1]++;
-					handleTimestamp(checkOut, estadia->getCheckOutDate());
-					checkOut[2]++; checkOut[1]++;
 					std::cout << "\nEstadia encontrada: \n";
 					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
-					std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
-					std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
+					std::cout << " - Data de Entrada: " << formatTimestamp(estadia->getCheckInDate()) << std::endl;
+					std::cout << " - Data de Saída: " << formatTimestamp(estadia->getCheckOutDate()) << std::endl;
 					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
 					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
 				}
@@ -324,15 +314,10 @@ void searchEstadias() {
 					std::cout << "\nNenhuma estadia encontrada para o cliente com nome " << name << ".\n" << std::endl;
 				} else {
 					for (Estadia* estadia : estadias) {
-						int checkIn[6], checkOut[6];
-						handleTimestamp(checkIn , estadia->getCheckInDate ());
-						checkIn[2]++ ; checkIn[1]++;
-						handleTimestamp(checkOut, estadia->getCheckOutDate());
-						checkOut[2]++; checkOut[1]++;
 						std::cout << "\nEstadia encontrada: \n";
 						std::cout << " - Código: " << estadia->getCodigo() << std::endl;
-						std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
-						std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
+						std::cout << " - Data de Entrada: " << formatTimestamp(estadia->getCheckInDate()) << std::endl;
+						std::cout << " - Data de Saída: " << formatTimestamp(estadia->getCheckOutDate()) << std::endl;
 						std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
 						std::cout << " - Nome do cliente: " << estadia->getCliente()->getNome() << std::endl; 
 						std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
