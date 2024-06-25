@@ -30,5 +30,6 @@ add_executable(
 	src/tests/cliente.cpp
 	src/tests/funcionario.cpp
 	src/tests/files.cpp
+	src/tests/pessoa.cpp
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2WithMain DescansoGarantido_LIB)

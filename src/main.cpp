@@ -37,7 +37,7 @@ void Menu()
 
 			pessoasHandler->cadastrarCliente(cellPhone, name, address, points);
 			
-			std::cout << "Cliente cadastrado com sucesso! Seja bem vindo(a) Sr(a). " << name << "ao Hotel Descanso Garantido, aqui o seu descanso é garantido ou seu dinheiro de volta." << std::endl; 
+			std::cout << "Cliente cadastrado com sucesso! Seja bem vindo(a) Sr(a). " << name << " ao Hotel Descanso Garantido, aqui o seu descanso é garantido ou seu dinheiro de volta." << std::endl; 
 
 			clienteCadastrado = true;
 
@@ -48,7 +48,7 @@ void Menu()
 			unsigned int number = 0;
 			float dailyValue = 750.0;
 
-			std::cout << "Informe o número do quarto desejado: " << std::endl;
+			std::cout << "Para todas as diárias, o valor é de R$750,00. Informe o número do quarto desejado: " << std::endl;
 			std::cin >> number;
 
 			quartosHandler->criarQuarto(number, dailyValue); 
@@ -62,10 +62,10 @@ void Menu()
 			float wage = 0.0;
 
 			std::cout << "Informe o nome do funcionário " << std::endl;
-			std::cin >> name;
+			std::getline(std::cin, name);
 
 			std::cout << "Informe o cargo do funcionário " << std::endl;
-			std::cin >> cargo;
+			std::getline(std::cin, cargo);
 
 			std::cout << "Informe o salário do funcionário " << std::endl;
 			std::cin >> wage;
