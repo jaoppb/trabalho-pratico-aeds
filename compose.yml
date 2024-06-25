@@ -9,4 +9,4 @@ services:
       - ./data:/app/data
       - ./_build:/app/build
       - ./CMakeLists.txt:/app/CMakeLists.txt
-    command: bash -c "cd /app/build && cmake .. && cmake --build . && ./tests"
+    command: bash -c "cd /app/build && cmake .. && cmake --build . && ./DescansoGarantido"

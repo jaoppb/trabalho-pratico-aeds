@@ -14,7 +14,7 @@ Estadias::~Estadias() {
 }
 
 const bool Estadias::_checkEstadia(Estadia *novaEstadia) {
-	const uint roomNumber = novaEstadia -> getQuarto() -> getNumero();
+	const int roomNumber = novaEstadia -> getQuarto() -> getNumero();
 	for(const Estadia *estadia: this -> estadias) {
 		if(estadia -> getQuarto() -> getNumero() != roomNumber) continue;
 
