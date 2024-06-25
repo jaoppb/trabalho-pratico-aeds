@@ -63,8 +63,8 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
     const int clientCode = cliente -> getCodigo();
 
     {
-        const Estadia* estadia = estadiasHandler -> agendarEstadia("23/06/2024", "25/06/2024", clientCode, roomNum);
-        CHECK(estadia -> getDiarias() == 2);
+        const Estadia* estadia = estadiasHandler -> agendarEstadia("24/06/2024", "25/06/2024", clientCode, roomNum);
+        CHECK(estadia -> getDiarias() == 1);
         CHECK_THROWS(estadiasHandler -> agendarEstadia("24/06/2024", "25/06/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("19/06/2024", "22/06/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("19/06/2024", "27/06/2024", clientCode, roomNum));

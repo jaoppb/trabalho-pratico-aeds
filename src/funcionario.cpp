@@ -10,10 +10,13 @@ Funcionario::Funcionario(
     std::string cargo,
     float salario
     ): Pessoa(codigo, telefone, nome), cargo(cargo) {
-    if(salario < 0) throw std::runtime_error("O salario nao pode ser negativo");
+    if(salario < 0) throw std::runtime_error("O salario não pode ser negativo");
     this -> salario = salario;
 }
 
 const std::string Funcionario::getCargo()  const { return this->cargo; }
 const float Funcionario::getSalario() const { return this->salario; }
-void Funcionario::setSalario(float salario) { this->salario = salario; }
+void Funcionario::setSalario(float salario) {
+    if(salario < 0) throw std::runtime_error("O salario não pode ser negativo");
+    this->salario = salario;
+}
