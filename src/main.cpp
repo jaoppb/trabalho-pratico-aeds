@@ -112,7 +112,7 @@ bool scheduleEstadia() {
 
 	const std::vector<Quarto*> quartos = quartosHandler->getRoomsByCapacity(guests);
 	if(quartos.empty()) {
-		std::cout << "\nNenhum quarto disponível com essa capacidade disponível.";
+		std::cout << "\nNenhum quarto disponível com essa capacidade disponível. Insira outra";
 		return false;
 	}
 
@@ -143,74 +143,6 @@ bool scheduleEstadia() {
 		std::cout << err.what() << std::endl;
 	}
 	return false;
-}
-
-void searchEstadias() {
-	int searchOption = 0;
-	while (searchOption < 1 || searchOption > 3) {
-		std::cout << "\nEscolha o método de pesquisa de estadias: \n"
-							<< "1 - Pesquisar por código do cliente\n"
-							<< "2 - Pesquisar por número do quarto\n"
-							<< "3 - Sair das pesquisas\n";
-		std::cin >> searchOption;
-	}
-	std::cin.ignore();
-
-	if (searchOption == 1) {
-		unsigned int clientCode;
-		std::cout << "\nDigite o código do cliente: " << std::endl;
-		std::cin >> clientCode;
-
-		try {
-			std::vector<Estadia*> estadias = estadiasHandler->getEstadias(clientCode);
-
-			if (estadias.empty()) {
-				std::cout << "\nNenhuma estadia encontrada para o cliente com código " << clientCode << ".\n" << std::endl;
-			} else {
-				for (Estadia* estadia : estadias) {
-					int checkIn[6], checkOut[6];
-					handleTimestamp(checkIn , estadia->getCheckInDate ());
-					handleTimestamp(checkOut, estadia->getCheckOutDate());
-					std::cout << "\nEstadia encontrada: \n";
-					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
-					std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
-					std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
-					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
-					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
-				}
-			}
-		} catch (std::runtime_error &err) {
-			std::cout << err.what() << std::endl;
-		}
-	} else if (searchOption == 2) {
-		unsigned int roomNumber;
-		std::cout << "\nDigite o número do quarto: " << std::endl;
-		std::cin >> roomNumber;
-
-		try {
-			std::vector<Estadia*> estadias = estadiasHandler->getEstadiasByRoom(roomNumber);
-
-			if (estadias.empty()) {
-				std::cout << "\nNenhuma estadia encontrada para o quarto com número " << roomNumber << ".\n" << std::endl;
-			} else {
-				for (Estadia* estadia : estadias) {
-					int checkIn[6], checkOut[6];
-					handleTimestamp(checkIn , estadia->getCheckInDate ());
-					handleTimestamp(checkOut, estadia->getCheckOutDate());
-					std::cout << "\nEstadia encontrada: \n";
-					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
-					std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
-					std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
-					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
-					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
-				}
-			}
-		} catch (std::runtime_error &err) {
-			std::cout << err.what() << std::endl;
-		}
-	} else if (searchOption != 3) {
-		std::cout << "\nOpção inválida. Voltando ao menu principal.\n";
-	}
 }
 
 void searchPessoas() {
@@ -288,6 +220,114 @@ void searchPessoas() {
 		std::cout << "\nOpção inválida. Voltando ao menu principal.\n";
 	}
 }
+
+void searchEstadias() {
+	int searchOption = 0;
+	while (searchOption < 1 || searchOption > 3) {
+		std::cout << "\nEscolha o método de pesquisa de estadias: \n"
+							<< "1 - Pesquisar por código do cliente\n"
+							<< "2 - Pesquisar por número do quarto\n"
+							<< "3 - Pesquisar pelo nome\n"
+							<< "4 - Sair das pesquisas\n";
+		std::cin >> searchOption;
+	}
+	std::cin.ignore();
+
+	if (searchOption == 1) {
+		unsigned int clientCode;
+		std::cout << "\nDigite o código do cliente: " << std::endl;
+		std::cin >> clientCode;
+
+		try {
+			std::vector<Estadia*> estadias = estadiasHandler->getEstadias(clientCode);
+
+			if (estadias.empty()) {
+				std::cout << "\nNenhuma estadia encontrada para o cliente com código " << clientCode << ".\n" << std::endl;
+			} else {
+				for (Estadia* estadia : estadias) {
+					int checkIn[6], checkOut[6];
+					handleTimestamp(checkIn , estadia->getCheckInDate ());
+					checkIn[2]++ ; checkIn[1]++;
+					handleTimestamp(checkOut, estadia->getCheckOutDate());
+					checkOut[2]++; checkOut[1]++;
+					std::cout << "\nEstadia encontrada: \n";
+					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
+					std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
+					std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
+					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
+					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
+				}
+			}
+		} catch (std::runtime_error &err) {
+			std::cout << err.what() << std::endl;
+		}
+	} else if (searchOption == 2) {
+		unsigned int roomNumber;
+		std::cout << "\nDigite o número do quarto: " << std::endl;
+		std::cin >> roomNumber;
+
+		try {
+			std::vector<Estadia*> estadias = estadiasHandler->getEstadiasByRoom(roomNumber);
+
+			if (estadias.empty()) {
+				std::cout << "\nNenhuma estadia encontrada para o quarto com número " << roomNumber << ".\n" << std::endl;
+			} else {
+				for (Estadia* estadia : estadias) {
+					int checkIn[6], checkOut[6];
+					handleTimestamp(checkIn , estadia->getCheckInDate ());
+					checkIn[2]++ ; checkIn[1]++;
+					handleTimestamp(checkOut, estadia->getCheckOutDate());
+					checkOut[2]++; checkOut[1]++;
+					std::cout << "\nEstadia encontrada: \n";
+					std::cout << " - Código: " << estadia->getCodigo() << std::endl;
+					std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
+					std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
+					std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
+					std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
+				}
+			}
+		} catch (std::runtime_error &err) {
+			std::cout << err.what() << std::endl;
+		}
+		}else if (searchOption == 3) {
+			std::string name;
+			std::cout << "\nDigite o nome do cliente: " << std::endl;
+			std::getline(std::cin, name);
+
+			try {
+				std::vector<Pessoa *> pessoasEncontradas = pessoasHandler->getPessoa(name);
+				std::vector<unsigned int> codes({});
+				for(Pessoa* pessoa: pessoasEncontradas) {
+					codes.push_back(pessoa->getCodigo());
+				}
+				std::vector<Estadia*> estadias = estadiasHandler->getEstadias(codes);
+				
+				if (pessoasEncontradas.empty()) {
+					std::cout << "\nNenhuma estadia encontrada para o cliente com nome " << name << ".\n" << std::endl;
+				} else {
+					for (Estadia* estadia : estadias) {
+						int checkIn[6], checkOut[6];
+						handleTimestamp(checkIn , estadia->getCheckInDate ());
+						checkIn[2]++ ; checkIn[1]++;
+						handleTimestamp(checkOut, estadia->getCheckOutDate());
+						checkOut[2]++; checkOut[1]++;
+						std::cout << "\nEstadia encontrada: \n";
+						std::cout << " - Código: " << estadia->getCodigo() << std::endl;
+						std::cout << " - Data de Entrada: " << checkIn[2] << "/" << checkIn[1] << "/" << checkIn[0] << std::endl;
+						std::cout << " - Data de Saída: " << checkOut[2] << "/" << checkOut[1] << "/" << checkOut[0] << std::endl;
+						std::cout << " - Código do Cliente: " << estadia->getCliente()->getCodigo() << std::endl;
+						std::cout << " - Nome do cliente: " << estadia->getCliente()->getNome() << std::endl; 
+						std::cout << " - Número do Quarto: " << estadia->getQuarto()->getNumero() << std::endl;
+					}
+				}
+			} catch (std::runtime_error &err) {
+				std::cout << err.what() << std::endl;
+			}
+	} else if (searchOption != 4) {
+		std::cout << "\nOpção inválida. Voltando ao menu principal.\n";
+	}
+}
+
 void checkOutStay(){
 	unsigned int codeStay;
 	std::cout << "\nInforme o código da estadia à dar baixa: " << std::endl;
