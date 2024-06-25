@@ -9,6 +9,4 @@ extern Quartos  *quartosHandler;
 extern Estadias *estadiasHandler;
 extern Pessoas  *pessoasHandler;
 
-time_t getCurrentTimestamp();
-
 #endif

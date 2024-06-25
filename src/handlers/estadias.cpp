@@ -2,6 +2,7 @@
 #include <iostream>
 
 #include "../global.hpp"
+#include "../utils.hpp"
 #include "estadias.hpp"
 
 Estadias::Estadias(bool load): estadias({}), fileHandler("./data/estadias.bin") {
@@ -92,6 +93,8 @@ Estadia *Estadias::_loadEstadia(
 	this -> estadias.push_back(estadia);
 	return estadia;
 }
+
+const size_t Estadias::getTotal() const { return this->estadias.size(); }
 
 const Estadia* Estadias::agendarEstadia(
 	std::string dataEntrada,
