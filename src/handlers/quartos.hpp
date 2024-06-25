@@ -4,18 +4,26 @@
 #include <vector>
 
 #include "../quarto.hpp"
+#include "./files.hpp"
 
 class Quartos {
 private:
 	std::vector<Quarto*> quartos;
+
+	FileHandler fileHandler;
+
+	Quarto *_loadQuarto(unsigned int numero, float valorDiaria, unsigned int guests, bool status);
 public:
-	Quartos();
+	Quartos(bool load);
 	~Quartos();
-	const Quarto* criarQuarto(int numero, float valorDiaria);
-	const Quarto* getQuarto  (int numero) const;
-	void          setStatus  (int numero, bool status);
+
+	void load();
+
+	const Quarto* criarQuarto(unsigned int numero, float valorDiaria);
+	const Quarto* getQuarto  (unsigned int numero) const;
+	void          setStatus  (unsigned int numero, bool status);
 	void		  setStatus  (const Quarto *quarto, bool status);
-	const bool	  getStatus  (int numero) const;
+	const bool	  getStatus  (unsigned int numero) const;
 };
 
 #endif

@@ -114,7 +114,6 @@ void Menu()
 		}
 		case 5:
 			std::cout << "Muito obrigado pela preferência, volte sempre!" << std::endl;
-			exit(0);
 			break;
 		default:
 			std::cout << "Opção inválida, digite novamente." << std::endl;

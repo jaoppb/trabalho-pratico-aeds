@@ -4,12 +4,21 @@
 
 //Class Quarto
 
-Quarto::Quarto(int numero, float valorDiaria):
-	quantidadeDeHospedes(0), status(false) {
-	if(numero 	   <  0) throw std::runtime_error("O número do quarto precisa ser zero ou positivo");
+Quarto::Quarto(unsigned int numero, float valorDiaria):
+	numero(numero), diaria(valorDiaria), quantidadeDeHospedes(0), status(false) {
 	if(valorDiaria <= 0) throw std::runtime_error("O preço da Diária precisa ser positivo");
-	this -> numero = numero;
-	this -> diaria = valorDiaria;
+}
+
+Quarto::Quarto(
+	unsigned int numero,
+	float valorDiaria,
+	unsigned int guests,
+	bool status):
+	numero(numero),
+	diaria(valorDiaria),
+	quantidadeDeHospedes(guests),
+	status(status) {
+	if(valorDiaria <= 0) throw std::runtime_error("O preço da Diária precisa ser positivo");
 }
 
 const int   Quarto::getNumero() 				const { return this -> numero; }
@@ -22,7 +31,7 @@ void Quarto::setDiaria(float diaria) {
 	this -> diaria = diaria;
 }
 
-void Quarto::setQuantidadeDeHospedes(int hospedes) {
+void Quarto::setQuantidadeDeHospedes(unsigned int hospedes) {
 	if(quantidadeDeHospedes < 0) throw std::runtime_error("Não é possível ter quantidade de hospédes negativo.");
 	this -> quantidadeDeHospedes = hospedes;
 }

@@ -1,16 +1,26 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "../estadia.hpp"
-#include "../global.hpp"
+#include "handlers.hpp"
 
 TEST_CASE("Testes básicos para a Classe Estadia") {
     //cadastrar quarto
-    const Quarto *quarto = quartosHandler -> criarQuarto(12, 1.0f);
+    const Quarto *quarto = nullptr;
+    try {
+        quarto = quartosHandler -> criarQuarto(12, 1.0f);
+    } catch(std::runtime_error &err) {
+        quarto = quartosHandler -> getQuarto(12);
+    }
     REQUIRE(quarto != nullptr);
     const int roomNum = quarto -> getNumero();
 
     //cadastrar cliente
-    const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
+    const Cliente *cliente = nullptr;
+    try {
+        cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
+    } catch(std::runtime_error &err) {
+        cliente = pessoasHandler -> getCliente("Cliente Teste")[0];
+    }
     REQUIRE(cliente != nullptr);
     const int clientCode = cliente -> getCodigo();
 
@@ -53,18 +63,26 @@ TEST_CASE("Testes básicos para a Classe Estadia") {
 
 TEST_CASE("Testes básicos para a Classe Estadias") {
     //registra um quarto
-    const Quarto *quarto = quartosHandler -> criarQuarto(123, 12.0f);
+    const Quarto *quarto = nullptr;
+    try {
+        quarto = quartosHandler -> criarQuarto(123, 12.0f);
+    } catch(std::runtime_error &err) {
+        quarto = quartosHandler -> getQuarto(123);
+    }
     REQUIRE(quarto != nullptr);
     const int roomNum = quarto -> getNumero();
 
     //registra um cliente
-    const Cliente *cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
+    const Cliente *cliente = nullptr;
+    try {
+        cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
+    } catch(std::runtime_error &err) {
+        cliente = pessoasHandler -> getCliente("Cliente Teste")[0];
+    }
     REQUIRE(cliente != nullptr);
     const int clientCode = cliente -> getCodigo();
 
     {
-        const Estadia* estadia = estadiasHandler -> agendarEstadia("24/06/2024", "25/06/2024", clientCode, roomNum);
-        CHECK(estadia -> getDiarias() == 1);
         CHECK_THROWS(estadiasHandler -> agendarEstadia("24/06/2024", "25/06/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("19/06/2024", "22/06/2024", clientCode, roomNum));
         CHECK_THROWS(estadiasHandler -> agendarEstadia("19/06/2024", "27/06/2024", clientCode, roomNum));

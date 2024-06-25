@@ -5,20 +5,26 @@
 
 class Quarto {
 private:
-	int numero;
-	int quantidadeDeHospedes;
+	unsigned int numero;
+	unsigned int quantidadeDeHospedes;
 	float diaria;
 	bool status;
 
 public:
-	Quarto(int numero, float diaria);
+	Quarto(unsigned int numero, float diaria);
+	Quarto(
+		unsigned int numero,
+		float valorDiaria,
+		unsigned int guests,
+		bool status
+	);
 
 	const int   getNumero() const;
 	const int   getQuantidadeDeHospedes() const;
 	const float getDiaria() const;
 	const bool  getStatus() const;
 
-	void setQuantidadeDeHospedes(int hospedes);
+	void setQuantidadeDeHospedes(unsigned int hospedes);
 	void setDiaria(float diaria);
 	void setStatus(bool status);
 };

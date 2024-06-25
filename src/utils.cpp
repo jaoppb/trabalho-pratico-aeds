@@ -1,6 +1,4 @@
 #include <stdexcept>
-#include <iostream>
-#include <ctime>
 
 #include "utils.hpp"
 
@@ -24,3 +22,5 @@ time_t parseDate(std::string date) {
 		throw std::runtime_error("Data inválida");
 	return difftime(std::mktime(&time), timezone);
 }
+
+time_t getCurrentTimestamp() { return difftime(std::time(0), timezone); }

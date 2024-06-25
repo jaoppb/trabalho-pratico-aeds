@@ -26,6 +26,21 @@ Estadia::Estadia(
 	this -> quarto  = quartosHandler -> getQuarto(numeroDoQuarto);
 }
 
+Estadia::Estadia(
+	unsigned int codigo,
+	time_t dataEntrada,
+	time_t dataSaida,
+	unsigned int codigoCliente,
+	unsigned int numeroDoQuarto
+): codigo(codigo), dataEntrada(dataEntrada), dataSaida(dataSaida) {
+	if(this -> dataSaida <= this -> dataEntrada) throw std::runtime_error("A data de saida precisa ser no minimo um dia apos a data de entrada");
+
+	this -> diarias = ceil(difftime(this -> dataSaida, this -> dataEntrada) / (24.0f * 60.0f * 60.0f));
+
+	this -> cliente = pessoasHandler -> getCliente(codigoCliente);
+	this -> quarto  = quartosHandler -> getQuarto(numeroDoQuarto);
+}
+
 const int	   Estadia::getCodigo()		  const { return this -> codigo; }
 const int	   Estadia::getDiarias() 	  const { return this -> diarias; }
 const Cliente* Estadia::getCliente()	  const { return this -> cliente; }

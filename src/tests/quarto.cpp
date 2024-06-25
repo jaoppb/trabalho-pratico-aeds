@@ -1,7 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
 
 #include "../quarto.hpp"
-#include "../global.hpp"
+#include "handlers.hpp"
 
 TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
 	{
@@ -26,7 +26,6 @@ TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
 		CHECK_NOTHROW( Quarto(-0, 1.0f) );
 		CHECK_NOTHROW( Quarto(0 ,  .1f) );
 
-		CHECK_THROWS( Quarto(  -1,  10.0f) );
 		CHECK_THROWS( Quarto( 100,   0.0f) );
 		CHECK_THROWS( Quarto( -20, -24.0f) );
 	}
@@ -42,7 +41,6 @@ TEST_CASE("Testa básico da Classe Quartos") {
 		CHECK_THROWS(quartosHandler -> criarQuarto(10, 24.51f));
 		CHECK_THROWS(quartosHandler -> criarQuarto(20, 0.0f));
 		CHECK_THROWS(quartosHandler -> criarQuarto(15, -10.0f));
-		CHECK_THROWS(quartosHandler -> criarQuarto(-4, 18.0f));
 		CHECK_THROWS(quartosHandler -> criarQuarto(-8, -1.0f));
 
 		CHECK(quartosHandler -> getStatus(10) == false);
@@ -58,7 +56,7 @@ TEST_CASE("Testa básico da Classe Quartos") {
 		CHECK_THROWS(quartosHandler -> setStatus(-10, false));
 		CHECK_THROWS(quartosHandler -> setStatus(-90, true));
 
-		const Quarto *quarto05, *quarto20;
+		const Quarto *quarto05 = nullptr, *quarto20 = nullptr;
 		CHECK_NOTHROW(quarto05 = quartosHandler -> criarQuarto( 5, 19.9f));
 		CHECK_NOTHROW(quarto20 = quartosHandler -> criarQuarto(20, 14.9f));
 

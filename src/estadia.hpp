@@ -25,6 +25,14 @@ public:
 		unsigned int numeroDoQuarto
 	);
 
+	Estadia(
+		unsigned int codigo,
+		time_t dataEntrada,
+		time_t dataSaida,
+		unsigned int codigoCliente,
+		unsigned int numeroDoQuarto
+	);
+
 	const int	   getCodigo() 		 const;
 	const int 	   getDiarias() 	 const;
 	const Cliente *getCliente()		 const;

@@ -9,7 +9,7 @@
 class Cliente: public Pessoa {
 private:
     std::string endereco;
-    int pontos;
+    unsigned int pontos;
 
 public:
     Cliente(
