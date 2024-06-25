@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cstdlib>
+#include <string>
 
 #include "global.hpp"
 
@@ -14,6 +15,7 @@ void Menu()
 		std::cout << "Escolha a opção desejada conforme indicado no menu a seguir: " << std::endl
 				  << "1 - Cadastrar um cliente.\n2 - Cadastrar um quarto.\n3 - Cadastrar um funcionário.\n4 - Cadastrar uma estadia.\n5 - Sair do menu." << std::endl;
 		std::cin >> result;
+		std::cin.ignore();
 
 		switch (result)
 		{
@@ -25,10 +27,10 @@ void Menu()
 			unsigned int points = 0;
 
 			std::cout << "Informe seu nome: " << std::endl;
-			std::cin >> name;
+			std::getline(std::cin, name);
 
 			std::cout << "Informe seu endereço: " << std::endl;
-			std::cin >> address;
+			std::getline(std::cin, address);
 
 			std::cout << "Informe seu número de telefone: " << std::endl;
 			std::cin >> cellPhone;
