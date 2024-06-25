@@ -17,7 +17,7 @@ TEST_CASE("Testes básicos para a Classe Estadia") {
     //cadastrar cliente
     const Cliente *cliente = nullptr;
     try {
-        cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
+        cliente = pessoasHandler -> cadastrarCliente("3199999999", "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
     } catch(std::runtime_error &err) {
         cliente = pessoasHandler -> getCliente("Cliente Teste")[0];
     }
@@ -75,7 +75,7 @@ TEST_CASE("Testes básicos para a Classe Estadias") {
     //registra um cliente
     const Cliente *cliente = nullptr;
     try {
-        cliente = pessoasHandler -> cadastrarCliente(3199999999, "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
+        cliente = pessoasHandler -> cadastrarCliente("3199999999", "Cliente Teste", "Rua 31, 200, Bairro Tal - Cidade Tal", 0);
     } catch(std::runtime_error &err) {
         cliente = pessoasHandler -> getCliente("Cliente Teste")[0];
     }
