@@ -5,6 +5,8 @@
 #include "global.hpp"
 #include "utils.hpp"
 
+//Trabalho feito por João P. Peres e Yuri Cardoso
+
 int readInt() {
 	std::string line;
 	int number;
@@ -81,14 +83,14 @@ bool registerRoom() {
 	unsigned int number = 0, guests = 1;
 	float dailyValue = 0;
 
-	std::cout << "\nInforme o número do quarto desejado:" << std::endl;
-	number = readInt();
+	do std::cout << "\nInforme o número do quarto desejado:" << std::endl;
+	while ((number = readInt()) == -1);
 
-	std::cout << "\nInforme o valor da diária(separe decimal com utilizando .):" << std::endl;
-	dailyValue = readFloat();
+	do std::cout << "\nInforme o valor da diária(separe decimal com utilizando .):" << std::endl;
+	while((dailyValue = readFloat()) == -1);
 
-	std::cout << "\nInsira a capacidade do quarto:" << std::endl;
-	guests = readInt();
+	do std::cout << "\nInsira a capacidade do quarto:" << std::endl;
+	while((guests = readInt()) == -1);
 
 	try {
 		quartosHandler->criarQuarto(number, dailyValue, guests);
@@ -114,8 +116,8 @@ bool registerEmploye() {
 	std::cout << "\nInforme o cargo do funcionário " << std::endl;
 	std::getline(std::cin, cargo);
 
-	std::cout << "\nInforme o salário do funcionário " << std::endl;
-	wage = readFloat();
+	do std::cout << "\nInforme o salário do funcionário " << std::endl;
+	while((wage = readFloat()) == -1);
 
 	bool correct = false;
 	while(!correct) {
@@ -152,20 +154,20 @@ bool scheduleEstadia() {
 	std::cout << "\nPara o cadastro de uma estadia, por favor digite a data de "
 				"entrada desejada no formato (dd/mm/aaaa) "
 			<< std::endl;
-	std::cin >> entryDate;
+	std::getline(std::cin, entryDate);
 
 	entryDate += " - 14:00:00";
 
 	std::cout << "\nDigite a data de saída também no mesmo formato" << std::endl;
-	std::cin >> exitDate;
+	std::getline(std::cin, exitDate);
 
 	exitDate += " - 12:00:00";
 
-	std::cout << "\nInforme o código do cliente " << std::endl;
-	clientCode = readInt();
+	do std::cout << "\nInforme o código do cliente " << std::endl;
+ 	while((clientCode = readInt()) == -1);
 
-	std::cout << "\nInforme a quantidade de hospedes:" << std::endl;
-	guests = readInt();
+	do std::cout << "\nInforme a quantidade de hospedes:" << std::endl;
+	while((guests = readInt()) == -1);
 
 	const std::vector<Quarto *> quartos = quartosHandler->getRoomsByCapacity(guests);
 	if (quartos.empty()) {
@@ -173,13 +175,13 @@ bool scheduleEstadia() {
 		return false;
 	}
 
+	std::cout << "\n\nQuartos disponíveis:";
 	bool one = false;
 	for (Quarto *quarto : quartos) {
 		if (!estadiasHandler->isAvaliable(quarto->getNumero(), parseDate(entryDate), parseDate(exitDate))) continue;
 		std::cout << "\nQuarto N°" << quarto->getNumero() << std::endl
-					<< " - Capacidade: " << quarto->getQuantidadeDeHospedes()
-					<< std::endl
-					<< " - Diaria: " << quarto->getDiaria();
+					<< " - Capacidade: " << quarto->getQuantidadeDeHospedes() << std::endl
+					<< " - Diaria: " << quarto->getDiaria() << std::endl;
 		one = true;
 	}
 	if (!one) {
@@ -187,8 +189,8 @@ bool scheduleEstadia() {
 		return false;
 	}
 
-	std::cout << "\n\nInforme o quarto do cliente " << std::endl;
-	numberRoom = readInt();
+	do std::cout << "\n\nInforme o quarto do cliente " << std::endl;
+	while((numberRoom = readInt()) == -1);
 
 	try {
 		const Estadia *estadia = estadiasHandler->agendarEstadia(
@@ -209,11 +211,11 @@ bool scheduleEstadia() {
 void searchPessoas() {
 	int searchOption = 0;
 	while (searchOption < 1 || searchOption > 3) {
-		std::cout << "\nEscolha o método de pesquisa: \n"
+		do std::cout << "\nEscolha o método de pesquisa: \n"
 				  << "1 - Pesquisar por nome\n"
 				  << "2 - Pesquisar por código\n"
 				  << "3 - Sair das pesquisas\n";
-		searchOption = readInt();
+		while((searchOption = readInt()) == -1);
 	}
 
 	if (searchOption == 1) {
@@ -252,9 +254,9 @@ void searchPessoas() {
 		}
 	} else if (searchOption == 2) {
 		unsigned int codigo;
-		std::cout << "\nDigite o código da pessoa que deseja pesquisar: "
+		do std::cout << "\nDigite o código da pessoa que deseja pesquisar: "
 					<< std::endl;
-		codigo = readInt();
+		while((codigo = readInt()) == -1);
 
 		const Pessoa *pessoaEncontrada = pessoasHandler->getPessoa(codigo);
 
@@ -288,22 +290,21 @@ void searchPessoas() {
 void searchEstadias() {
 	int searchOption = 0;
 	while (searchOption < 1 || searchOption > 3) {
-		std::cout << "\nEscolha o método de pesquisa de estadias: \n"
+		do std::cout << "\nEscolha o método de pesquisa de estadias: \n"
 				<< "1 - Pesquisar por código do cliente\n"
 				<< "2 - Pesquisar por número do quarto\n"
 				<< "3 - Pesquisar pelo nome\n"
 				<< "4 - Sair das pesquisas\n";
-		searchOption = readInt();
+		while((searchOption = readInt()) == -1);
 	}
 
 	if (searchOption == 1) {
 	unsigned int clientCode;
-	std::cout << "\nDigite o código do cliente: " << std::endl;
-	clientCode = readInt();
+	do std::cout << "\nDigite o código do cliente: " << std::endl;
+	while((clientCode = readInt()) == -1);
 
 	try {
-	std::vector<Estadia *> estadias =
-		estadiasHandler->getEstadias(clientCode);
+		std::vector<Estadia *> estadias = estadiasHandler->getEstadias(clientCode);
 		if (estadias.empty()) {
 			std::cout << "\nNenhuma estadia encontrada para o cliente com código " << clientCode << ".\n" << std::endl;
 		} else {
@@ -321,8 +322,8 @@ void searchEstadias() {
 	}
 	} else if (searchOption == 2) {
 		unsigned int roomNumber;
-		std::cout << "\nDigite o número do quarto: " << std::endl;
-		roomNumber = readInt();
+		do std::cout << "\nDigite o número do quarto: " << std::endl;
+		while((roomNumber = readInt()) == -1);
 
 		try {
 			std::vector<Estadia *> estadias = estadiasHandler->getEstadiasByRoom(roomNumber);
@@ -378,8 +379,8 @@ void searchEstadias() {
 
 void checkOutStay() {
 	unsigned int codeStay;
-	std::cout << "\nInforme o código da estadia à dar baixa: " << std::endl;
-	codeStay = readInt();
+	do std::cout << "\nInforme o código da estadia à dar baixa: " << std::endl;
+	while((codeStay = readInt()) == -1);
 
 	try {
 		float value = estadiasHandler->darBaixa(codeStay);
@@ -414,21 +415,21 @@ void menu() {
 		std::getline(std::cin, line);
 
 		try {
-		result = stoi(line);
+			result = stoi(line);
 		} catch (std::invalid_argument &err) {
-		std::cout << "Você não utilizou um número tente novamente";
-		result = -1;
+			std::cout << "Você não utilizou um número tente novamente";
+			result = -1;
 		}
 
 		switch (result) {
 		case 1:
-		if (registerClient()) clientRegistered = true;
+			if (registerClient()) clientRegistered = true;
 			break;
 		case 2:
-		if (registerRoom()) roomRegistered = true;
+			if (registerRoom()) roomRegistered = true;
 			break;
 		case 3:
-		if (registerEmploye()) employeeRegistered = true;
+			if (registerEmploye()) employeeRegistered = true;
 			break;
 		case 4:
 			if (roomRegistered == true && clientRegistered == true && scheduleEstadia()) stayRegistered = true;
