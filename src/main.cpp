@@ -7,6 +7,16 @@
 
 //Trabalho feito por João P. Peres e Yuri Cardoso
 
+/*
+ * Realiza a leitura de um inteiro no stdin
+ *
+ * O -1 pode ser utilizado, pois essa função não é usada para leitura de
+ * números negativos
+ * 
+ * @returns -1 erro caso o dado inserido não seja um número
+ * 
+ * @return int
+ */
 int readInt() {
 	std::string line;
 	int number;
@@ -21,6 +31,16 @@ int readInt() {
 	return number;
 }
 
+/*
+ * Realiza a leitura de um float no stdin
+ *
+ * O -1 pode ser utilizado, pois essa função não é usada para leitura de
+ * números negativos
+ * 
+ * @returns -1 erro caso o dado inserido não seja um número
+ * 
+ * @return float
+ */
 float readFloat() {
 	std::string line;
 	float number;
@@ -35,6 +55,9 @@ float readFloat() {
 	return number;
 }
 
+/*
+ * Menu para registrar um cliente
+ */
 bool registerClient() {
 	std::string name = "";
 	std::string address = "";
@@ -79,6 +102,9 @@ bool registerClient() {
 	return false;
 }
 
+/*
+ * Menu para registrar um quarto
+ */
 bool registerRoom() {
 	unsigned int number = 0, guests = 1;
 	float dailyValue = 0;
@@ -104,6 +130,9 @@ bool registerRoom() {
 	return false;
 }
 
+/*
+ * Menu para registrar um funcionário
+ */
 bool registerEmploye() {
 	std::string cellPhone = "";
 	std::string name = "";
@@ -146,6 +175,9 @@ bool registerEmploye() {
   	return false;
 }
 
+/*
+ * Menu para agendar uma estadia
+ */
 bool scheduleEstadia() {
 	std::string entryDate;
 	std::string exitDate;
@@ -208,6 +240,9 @@ bool scheduleEstadia() {
   	return false;
 }
 
+/*
+ * Menu para buscar entre as pessoas registradas
+ */
 void searchPessoas() {
 	int searchOption = 0;
 	while (searchOption < 1 || searchOption > 3) {
@@ -287,6 +322,9 @@ void searchPessoas() {
 	}
 }
 
+/*
+ * Menu para buscar entre as estadias agendadas
+ */
 void searchEstadias() {
 	int searchOption = 0;
 	while (searchOption < 1 || searchOption > 3) {
@@ -377,6 +415,9 @@ void searchEstadias() {
 	}
 }
 
+/*
+ * Menu para dar baixa em uma estadia agendada
+ */
 void checkOutStay() {
 	unsigned int codeStay;
 	do std::cout << "\nInforme o código da estadia à dar baixa: " << std::endl;
@@ -391,6 +432,9 @@ void checkOutStay() {
 	}
 }
 
+/*
+ * Menu principal que fica em loop e chama todos os outros
+ */
 void menu() {
 	bool clientRegistered = pessoasHandler->getTotalClients() > 0;
 	bool roomRegistered = quartosHandler->getTotal() > 0;
@@ -458,6 +502,10 @@ void menu() {
   	}
 }
 
+/*
+ * Chama o método pro menu principal que fica em loop, quando sai 
+ * limpa os handlers utilizando o delete(chama o destrutor que salva nos arquivos)
+ */
 int main() {
 	menu();
 
