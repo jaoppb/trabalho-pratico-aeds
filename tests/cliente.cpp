@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include "../cliente.hpp"
+#include "../src/cliente.hpp"
 
 TEST_CASE("Teste básico da Classe Cliente", "[Cliente]") {
     Cliente cliente(1, 0, "123456789", "Joao da Silva", "Rua A, 123");
@@ -26,10 +26,9 @@ TEST_CASE("Teste básico da Classe Cliente", "[Cliente]") {
     }
 
     {
-
-        CHECK_NOTHROW(Cliente(2, 987654321, 0, "Maria da Silva", "Rua C, 789"));
+        CHECK_NOTHROW(Cliente(2, 0, "987654321", "Maria da Silva", "Rua C, 789"));
         
-        Cliente cliente_invalido(3, 123456780, 0, "Pedro de Souza", "Rua D, 321");
+        Cliente cliente_invalido(3, 0, "123456780", "Pedro de Souza", "Rua D, 321");
         cliente_invalido.addPontos(2);
         CHECK(cliente_invalido.getPontos() == 20);
 

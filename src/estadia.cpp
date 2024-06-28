@@ -2,9 +2,9 @@
 #include <stdexcept>
 #include <iostream>
 
-#include "estadia.hpp"
-#include "utils.hpp"
-#include "global.hpp"
+#include "../src/estadia.hpp"
+#include "../src/utils.hpp"
+#include "../src/global.hpp"
 
 //Class Estadia
 

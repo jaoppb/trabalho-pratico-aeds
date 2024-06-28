@@ -1,9 +1,9 @@
 #ifndef TEST_HANDLERS_HPP
 #define TEST_HANDLERS_HPP
 
-#include "../handlers/quartos.hpp"
-#include "../handlers/estadias.hpp"
-#include "../handlers/pessoas.hpp"
+#include "../src/handlers/quartos.hpp"
+#include "../src/handlers/estadias.hpp"
+#include "../src/handlers/pessoas.hpp"
 
 extern Quartos  *quartosHandler;
 extern Estadias *estadiasHandler;

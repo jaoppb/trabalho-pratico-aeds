@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
-#include "../funcionario.hpp"
-#include "../pessoa.hpp"
+#include "../src/funcionario.hpp"
+#include "../src/pessoa.hpp"
 
 TEST_CASE("Testes basicos para a Classe Funcionario") {
    

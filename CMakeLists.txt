@@ -26,15 +26,15 @@ target_link_libraries(DescansoGarantido DescansoGarantido_LIB)
 find_package(Catch2 3 REQUIRED)
 add_executable(
 	tests
-	src/tests/main.cpp
-	src/tests/quarto.cpp
-	src/tests/estadia.cpp
-	src/tests/cliente.cpp
-	src/tests/funcionario.cpp
-	src/tests/files.cpp
-	src/tests/utils.cpp
-	src/tests/handlers.cpp
-	src/tests/pessoa.cpp
+	tests/main.cpp
+	tests/quarto.cpp
+	tests/estadia.cpp
+	tests/cliente.cpp
+	tests/funcionario.cpp
+	tests/files.cpp
+	tests/utils.cpp
+	tests/handlers.cpp
+	tests/pessoa.cpp
 )
 target_link_libraries(tests PRIVATE Catch2::Catch2 DescansoGarantido_LIB)
 

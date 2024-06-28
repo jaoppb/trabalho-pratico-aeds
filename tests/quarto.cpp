@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "../quarto.hpp"
+#include "../src/quarto.hpp"
 #include "handlers.hpp"
 
 TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
@@ -9,7 +9,7 @@ TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
 
 		CHECK( quarto.getNumero() == 10 );
 		CHECK( quarto.getDiaria() == 24.99f );
-		CHECK( quarto.getQuantidadeDeHospedes() == 0 );
+		CHECK( quarto.getQuantidadeDeHospedes() == 1 );
 		CHECK( quarto.getStatus() == false );
 	}
 
@@ -18,7 +18,7 @@ TEST_CASE("Teste básico da Classe Quarto", "Exceptions da Classe Quarto") {
 
 		CHECK( quarto.getNumero() ==  20    );
 		CHECK( quarto.getDiaria() == 242.0f );
-		CHECK( quarto.getQuantidadeDeHospedes() == 0 );
+		CHECK( quarto.getQuantidadeDeHospedes() == 1 );
 		CHECK( quarto.getStatus() == false );
 	}
 

@@ -1,6 +1,6 @@
 #include <catch2/catch_test_macros.hpp>
 
-#include "../utils.hpp"
+#include "../src/utils.hpp"
 
 TEST_CASE("Teste básico do parseDate") {
 	{
