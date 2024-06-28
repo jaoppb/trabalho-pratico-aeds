@@ -19,3 +19,15 @@ Recebe uma string nos seguintes formatos:
 Retorna o timestamp equivalente a string `date`.
 
 Caso a data seja inválida retorna um `std::runtime_error` com a mensagem "Data inválida".
+
+## time_t getCurrentTimestamp()
+
+Retorna o timestamp(local: subtrai o fuso-horário) do momento em que a função é chamada.
+
+## void toLower(std::string &str)
+
+Transforma todos os caracteres maiusculos da string `str` passada por referência em caracteres minusculos.
+
+## std::string formatTimestamp(time_t timestamp)
+
+Retorna um string formatada do tipo `dd/mm/aa` com base no `timestamp` passado.
