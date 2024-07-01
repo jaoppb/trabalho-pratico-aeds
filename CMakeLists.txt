@@ -26,6 +26,7 @@ target_link_libraries(DescansoGarantido DescansoGarantido_LIB)
 find_package(Catch2 3 REQUIRED)
 add_executable(
 	tests
+	tests/main.catch2.cpp
 	tests/main.cpp
 	tests/quarto.cpp
 	tests/estadia.cpp
