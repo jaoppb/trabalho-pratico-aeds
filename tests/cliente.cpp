@@ -1,45 +1,46 @@
 #include <catch2/catch_test_macros.hpp>
 #include "../src/cliente.hpp"
+#include "../src/pessoa.hpp"
 
-TEST_CASE("Teste básico da Classe Cliente", "[Cliente]") {
-    Cliente cliente(1, 0, "123456789", "Joao da Silva", "Rua A, 123");
+TEST_CASE("Teste básico da Classe Cliente", "Exceptions da Classe Cliente") {
+    SECTION("Construtor e getters") {
+        Cliente cliente(1, 100, "123456789", "Maria", "Rua A");
 
-    {
         CHECK(cliente.getCodigo() == 1);
         CHECK(cliente.getTelefone() == "123456789");
-        CHECK(cliente.getNome() == "Joao da Silva");
-        CHECK(cliente.getEndereco() == "Rua A, 123");
-        CHECK(cliente.getPontos() == 0);
+        CHECK(cliente.getNome() == "Maria");
+        CHECK(cliente.getEndereco() == "Rua A");
+        CHECK(cliente.getPontos() == 100);
     }
 
-    {
-        cliente.addPontos(1);
-        CHECK(cliente.getPontos() == 10);
+    SECTION("Setter de endereco") {
+        Cliente cliente(2, 50, "987654321", "João", "Rua B");
 
-        cliente.addPontos(3);
-        CHECK(cliente.getPontos() == 40);
+        CHECK(cliente.getEndereco() == "Rua B");
+        cliente.setEndereco("Rua C");
+        CHECK(cliente.getEndereco() == "Rua C");
     }
 
-    {
-        cliente.setEndereco("Rua B, 456");
-        CHECK(cliente.getEndereco() == "Rua B, 456");
+    SECTION("Add pontos") {
+        Cliente cliente(3, 200, "555555555", "Pedro", "Rua D");
+
+        CHECK(cliente.getPontos() == 200);
+        cliente.addPontos(5);
+        CHECK(cliente.getPontos() == 250);
     }
 
-    {
-        CHECK_NOTHROW(Cliente(2, 0, "987654321", "Maria da Silva", "Rua C, 789"));
-        
-        Cliente cliente_invalido(3, 0, "123456780", "Pedro de Souza", "Rua D, 321");
-        cliente_invalido.addPontos(2);
-        CHECK(cliente_invalido.getPontos() == 20);
+    SECTION("Pontos negativos") {
+        CHECK_THROWS(Cliente(4, -10, "777777777", "Ana", "Rua E"));
+    }
 
-        CHECK_THROWS(cliente_invalido.addPontos(-5));
-        CHECK_THROWS(cliente_invalido.setEndereco("")); 
-        
-        Cliente cliente_valido(4, 10, "987654322", "Ana Clara", "Rua E, 654");
-        CHECK(cliente_valido.getCodigo() == 4);
-        CHECK(cliente_valido.getTelefone() == "987654322");
-        CHECK(cliente_valido.getPontos() == 10);
-        CHECK(cliente_valido.getNome() == "Ana Clara");
-        CHECK(cliente_valido.getEndereco() == "Rua E, 654");
+    SECTION("Endereco vazio") {
+        CHECK_THROWS(Cliente(5, 150, "999999999", "Paula", ""));
+    }
+
+    SECTION("Setter de endereco vazio") {
+        Cliente cliente(6, 300, "111111111", "Carlos", "Rua F");
+
+        CHECK(cliente.getEndereco() == "Rua F");
+        CHECK_THROWS(cliente.setEndereco(""));
     }
 }

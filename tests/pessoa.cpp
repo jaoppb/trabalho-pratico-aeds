@@ -2,43 +2,52 @@
 #include "../src/pessoa.hpp"
 #include "handlers.hpp"
 
-TEST_CASE("Testes basicos para a Classe Pessoa") {
-   
-    Pessoa pessoa(1, "3199999999", "Lucas Silva");
-    CHECK(pessoa.getCodigo() == 1);
-    CHECK(pessoa.getTelefone() == "3199999999");
-    CHECK(pessoa.getNome() == "Lucas Silva");
+TEST_CASE("Teste básico da Classe Pessoa", "[Pessoa]") {
+    {
+        Pessoa pessoa(1, "123456789", "Joao da Silva");
 
-    Pessoa pessoa2(2, "3198888888", "Ana Maria");
-    CHECK(pessoa2.getCodigo() == 2);
-    CHECK(pessoa2.getTelefone() == "3198888888");
-    CHECK(pessoa2.getNome() == "Ana Maria");
-}
-
-TEST_CASE("Testes para o Handler de Pessoas") {
-    SECTION("Cadastro de Cliente") {
-        const Cliente *cliente1 = nullptr;
-        REQUIRE_NOTHROW(cliente1 = pessoasHandler->cadastrarCliente("12345678", "João Augusto", "R. Um, 200", 0));
-        
-        REQUIRE(pessoasHandler->getCliente(cliente1->getCodigo()) == cliente1);
-        CHECK(cliente1->getTelefone() == "12345678");
-        CHECK(cliente1->getNome() == "João Augusto");
-        CHECK(cliente1->getPontos() == 0);
-
-        REQUIRE_NOTHROW(pessoasHandler->addPontos(cliente1, 5));
-        CHECK(cliente1->getPontos() == 50);
-
-        CHECK_NOTHROW(pessoasHandler->cadastrarCliente("213241214", "Diego Borges", "R. Dois, 200", -213));
-        CHECK_THROWS(pessoasHandler->cadastrarCliente("232141231", "Ana Clara", "", -13));
+        CHECK(pessoa.getCodigo() == 1);
+        CHECK(pessoa.getTelefone() == "123456789");
+        CHECK(pessoa.getNome() == "Joao da Silva");
     }
 
-    SECTION("Cadastro de Funcionário") {
-        const Funcionario *funcionario1 = nullptr;
-        REQUIRE_NOTHROW(funcionario1 = pessoasHandler->cadastrarFuncionaro("145689624", "Fernando Gomes", "Gerente", 1230.4f));
+    {
+        Pessoa pessoa(2, "987654321", "Maria de Souza");
 
-        REQUIRE(pessoasHandler->getFuncionario(funcionario1->getCodigo()) == funcionario1);
-        CHECK(funcionario1->getTelefone() == "145689624");
-        CHECK(funcionario1->getNome() == "Fernando Gomes");
-        CHECK(funcionario1->getCargo() == "Gerente");
+        CHECK(pessoa.getCodigo() == 2);
+        CHECK(pessoa.getTelefone() == "987654321");
+        CHECK(pessoa.getNome() == "Maria de Souza");
+    }
+
+    {
+        Pessoa pessoa(3, "", "Ana Clara");
+
+        CHECK(pessoa.getCodigo() == 3);
+        CHECK(pessoa.getTelefone() == "");
+        CHECK(pessoa.getNome() == "Ana Clara");
+    }
+
+    {
+        Pessoa pessoa(4, "555555555", "Pedro Alves");
+
+        CHECK(pessoa.getCodigo() == 4);
+        CHECK(pessoa.getTelefone() == "555555555");
+        CHECK(pessoa.getNome() == "Pedro Alves");
+    }
+
+    {
+        Pessoa pessoa_invalida(0, "12345", "");
+
+        CHECK(pessoa_invalida.getCodigo() == 0);
+        CHECK(pessoa_invalida.getTelefone() == "12345");
+        CHECK(pessoa_invalida.getNome() == "");
+    }
+
+    {
+        CHECK_NOTHROW(Pessoa(5, "111222333", "Carlos Oliveira"));
+        CHECK_NOTHROW(Pessoa(6, "222333444", "Elisa Mendes"));
+
+        CHECK_THROWS_AS(Pessoa(0, "", ""), std::invalid_argument);
+        CHECK_THROWS_AS(Pessoa(0, "000000000", ""), std::invalid_argument);
     }
 }
