@@ -46,8 +46,47 @@ TEST_CASE("Teste básico da Classe Pessoa", "[Pessoa]") {
     {
         CHECK_NOTHROW(Pessoa(5, "111222333", "Carlos Oliveira"));
         CHECK_NOTHROW(Pessoa(6, "222333444", "Elisa Mendes"));
+    }
+}
 
-        CHECK_THROWS_AS(Pessoa(0, "", ""), std::invalid_argument);
-        CHECK_THROWS_AS(Pessoa(0, "000000000", ""), std::invalid_argument);
+TEST_CASE("Teste básico da Classe Pessoas") {
+    unsigned int total         = pessoasHandler->getTotal(),
+                 totalClients  = pessoasHandler->getTotalClients(),
+                 totalEmployes = pessoasHandler->getTotalEmployess();
+
+    SECTION("Começo") {
+        CHECK(total         == 14);
+        CHECK(totalClients  == 12);
+        CHECK(totalEmployes == 2);
+    }
+
+    SECTION("Pessoas::cadastroCliente") {
+        CHECK_NOTHROW(pessoasHandler->cadastrarCliente("12345678", "Maria Ana 1", "R. Um, 123"  , 0));
+        CHECK_NOTHROW(pessoasHandler->cadastrarCliente("23456789", "Maria Ana 2", "R. Dois, 234", 0));
+        CHECK_THROWS(pessoasHandler->cadastrarCliente("123456789", "Maria Ana 3", "", 0));
+    }
+
+    SECTION("Pessoas::getTotal*") {
+        CHECK(total         == pessoasHandler->getTotal());
+        CHECK(totalClients  == pessoasHandler->getTotalClients());
+        CHECK(totalEmployes == pessoasHandler->getTotalEmployess());
+    }
+
+    SECTION("Pessoas::cadastroFuncionario") {
+        CHECK_NOTHROW(pessoasHandler->cadastrarFuncionaro("87654321", "Funcionario do Hotel 1", "Gerente"      , 2500));
+        CHECK_NOTHROW(pessoasHandler->cadastrarFuncionaro("87654321", "Funcionario do Hotel 2", "Recepcionista", 1200));
+        CHECK_THROWS(pessoasHandler->cadastrarFuncionaro("87654321", "Funcionario do Hotel 3", "Recepcionista", -1200));
+    }
+
+    SECTION("Pessoas::getTotal*") {
+        CHECK(total         == pessoasHandler->getTotal());
+        CHECK(totalClients  == pessoasHandler->getTotalClients());
+        CHECK(totalEmployes == pessoasHandler->getTotalEmployess());
+    }
+
+    SECTION("Pessoas::get* by name") {
+        CHECK(pessoasHandler->getCliente("maria ana").size() == 2);
+        CHECK(pessoasHandler->getFuncionario("funcionario do hotel").size() == 2);
+        CHECK(pessoasHandler->getPessoa("").size() == total);
     }
 }

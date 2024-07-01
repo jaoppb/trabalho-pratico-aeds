@@ -56,13 +56,13 @@ TEST_CASE("Teste da toLower") {
 }
 
 TEST_CASE("Testes da formatTimestamp") {
-	CHECK(formatTimestamp(0) 		  == "01/01/70");
-	CHECK(formatTimestamp(1718983800) == "21/06/24");
-	CHECK(formatTimestamp(1704067200) == "01/01/24");
-	CHECK(formatTimestamp(1735689599) == "31/12/24");
-	CHECK(formatTimestamp(1718928000) == "21/06/24");
-	CHECK(formatTimestamp(1719014399) == "21/06/24");
-	CHECK(formatTimestamp(1709208000) == "29/02/24");
-	CHECK(formatTimestamp(1704067200) == "01/01/24");
-	CHECK(formatTimestamp(1718928000) == "21/06/24");
+	CHECK(formatTimestamp(difftime(0, -timezone)) 		  == "01/01/70");
+	CHECK(formatTimestamp(difftime(1718983800, -timezone)) == "21/06/24");
+	CHECK(formatTimestamp(difftime(1704067200, -timezone)) == "01/01/24");
+	CHECK(formatTimestamp(difftime(1735689599, -timezone)) == "31/12/24");
+	CHECK(formatTimestamp(difftime(1718928000, -timezone)) == "21/06/24");
+	CHECK(formatTimestamp(difftime(1719014399, -timezone)) == "21/06/24");
+	CHECK(formatTimestamp(difftime(1709208000, -timezone)) == "29/02/24");
+	CHECK(formatTimestamp(difftime(1704067200, -timezone)) == "01/01/24");
+	CHECK(formatTimestamp(difftime(1718928000, -timezone)) == "21/06/24");
 }

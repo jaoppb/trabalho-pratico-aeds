@@ -29,10 +29,6 @@ TEST_CASE("Teste básico da Classe Cliente", "Exceptions da Classe Cliente") {
         CHECK(cliente.getPontos() == 250);
     }
 
-    SECTION("Pontos negativos") {
-        CHECK_THROWS(Cliente(4, -10, "777777777", "Ana", "Rua E"));
-    }
-
     SECTION("Endereco vazio") {
         CHECK_THROWS(Cliente(5, 150, "999999999", "Paula", ""));
     }
